@@ -1,0 +1,27 @@
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
+const Logout = () => {
+    var navigate= useNavigate("");
+    
+   
+  
+    if(window.confirm("Do you want to Logout?")){
+       
+        localStorage.removeItem("mobile_no");
+        localStorage.removeItem("user_name");
+        navigate('/');
+    }
+    else{
+        navigate('/dashboard');
+    }
+   
+    
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default Logout
