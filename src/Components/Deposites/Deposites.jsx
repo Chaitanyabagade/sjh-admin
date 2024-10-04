@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './Deposites.css'
+
 import axios from 'axios';
 const Deposites = () => {
 const [data,setData]=useState([]);
@@ -72,11 +72,11 @@ useEffect(()=>{
 
     }
   return (
-    <div className='deposite-page justify-center '>
+    <div className='deposite-page justify-center w-[100%] h-[100vh] bg-yellow-300'>
         <h1 className='depositeName'> All Users Deposites Table </h1>
-        <div className='add-deposite'>
+        <div className='add-deposite border-[5px] border-gray-800'>
               <h1 className='text-4xl font-bold text-orange-600 items-center' >Add Deposite</h1>
-              <br></br><br></br>
+             <br />
               <select className='border-2 border-purple-500  selectloan' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
                <option>Select The User Name...</option>
               {data.map((name,index) => (
@@ -93,27 +93,26 @@ useEffect(()=>{
               </select><br/>
               <button className='button text-4xl bg-blue-600 rounded-full w-[32%] ml-[34%] m-5' onClick={handleAddDeposite}>Add</button>
         </div>
-        <div className='table2  content-center '>
-        <table >
-              
+      
+        <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'> 
+        <table className='w-full mb-9'>
                 <tr> 
-                    <td style={{background:'orange'}}>Sr.No.</td>
-                    <td style={{background:'orange'}}>user Name</td>
-                    <td style={{background:'orange'}}>Deposite</td>             
+                    <td className='p-1 border-2 border-black text-center'style={{background:'orange'}}>Sr.No.</td>
+                    <td className='p-1 border-2 border-black text-center'style={{background:'orange'}}>user Name</td>
+                    <td className='p-1 border-2 border-black text-center'style={{background:'orange'}}>Deposite</td>             
                 </tr>
                
                 {data.map((name,index) => (
                  
                  <tr> 
-                 <td style={{background:'white'}}>{index+1}</td>
-                 <td style={{background:'white'}}>{name.user_name}</td>
-                 <td style={{background:'white'}}>{name.deposite}</td>             
+                 <td className='p-1 border-2 border-black text-center'style={{background:'white'}}>{index+1}</td>
+                 <td className='p-1 border-2 border-black text-'style={{background:'white'}}>{name.user_name}</td>
+                 <td className='p-1 border-2 border-black text-right'style={{background:'white'}}>{name.deposite}</td>             
              </tr>
       ))}
                <tr> 
-                    <td style={{background:'orange'}}>Total</td>
-                    <td style={{background:'orange'}}>-</td>
-                    <td style={{background:'orange'}}>{dep_amt}</td>             
+                    <td colSpan="2"className='p-1 border-2 border-black text-center'style={{background:'orange'}}>Total</td>
+                    <td className='p-1 border-2 border-black text-right'style={{background:'orange'}}>{dep_amt}</td>             
                 </tr>
            
            

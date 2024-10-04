@@ -11,6 +11,8 @@ import Logout from './Components/Logout/Logout';
 import Deposites from './Components/Deposites/Deposites';
 import Loan from './Components/Loan/Loan';
 import Intrest from './Components/Intrest/Intrest';
+import Penalty from './Components/Penalty/Penalty';
+
 function App() {
  
 
@@ -31,6 +33,9 @@ function App() {
                <Route path="deposites" element={<Deposites/>}/>
                <Route path="loans" element={<Loan/>}/>
                <Route path="intrests" element={<Intrest/>}/>
+               <Route path="penaltys" element={<Penalty/>}/>
+               
+               
             
 
                

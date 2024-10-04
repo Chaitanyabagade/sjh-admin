@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../Deposites/Deposites.css';
+
 import axios from 'axios';
 const Loan = () => {
 
@@ -148,9 +148,9 @@ useEffect(()=>{
     }
   return (
     <div className='deposite-page'>
-        
-        <div className='add-deposite '>
-              <h1 className='text-4xl font-bold  text-center text-orange-600' >Add Loan</h1><br />
+        <div className='md:flex md:mt-[50px]'>
+        <div className='add-deposite border-[5px] border-gray-800 '>
+              <h1 className='text-4xl font-bold  text-center text-orange-600' >Add Loan</h1>
               <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
                <option>Select The User Name...</option>
               {names.map((name,index) => (
@@ -158,16 +158,16 @@ useEffect(()=>{
               ))}
               </select> <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="number" placeholder='Enter the amount..' value={amount} onChange={(e) => setAmount(e.target.value)}/>
               <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='Enter the get date..' value={getDate} onChange={(e) => setGetDate(e.target.value)} />
-              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Enter return date..' value={rDate} onChange={(e) => setRDate(e.target.value)}/>
-              <select className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Enter return date..' value={loanType} onChange={(e) => setLoanType(e.target.value)}>
+              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Enter the return date..' value={rDate} onChange={(e) => setRDate(e.target.value)}/>
+              <select className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text"  value={loanType} onChange={(e) => setLoanType(e.target.value)}>
                   <option>EMI</option>
                   <option>EDI</option>
                   <option>EFI</option>
               </select>
               <button className='button text-4xl bg-blue-600 rounded-full w-[32%] ml-[34%] m-5' onClick={handleAddLoan}>Add</button>
         </div>
-        <div className='add-deposite'>
-              <h1 className='text-orange-600 text-3xl font-bold' >Edit Loan Status</h1>
+        <div className='add-deposite border-[5px] border-gray-800'>
+              <h1 className='text-orange-600 text-4xl font-bold' >Edit Loan Status</h1>
               <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='user name..' value={name2} onChange={(e) => setName2(e.target.value)} >
                <option>Select The User Name...</option>
               {names.map((name,index) => (
@@ -182,41 +182,43 @@ useEffect(()=>{
               </select>
               <button className='button text-4xl bg-blue-600 rounded-full w-[32%] ml-[34%] m-5' onClick={handleEditLoan}>Edit</button>
         </div>
+        </div>
         <h2 className='depositeName'> All Users Loans Table </h2>
-      <div className='table'> 
-        <table >
+        <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'> 
+       
+        <table className='w-full' >
               
         <tr> 
-                    <td style={{background:'orange'}}>Sr.No.</td>
-                    <td style={{background:'orange'}}>Loan id</td>
-                    <td style={{background:'orange'}}>user Name</td>
-                    <td style={{background:'orange'}}>Loan Amount</td>     
-                    <td style={{background:'orange'}}>Get Date</td>
-                    <td style={{background:'orange'}}>Re-Date</td>
-                    <td style={{background:'orange'}}>Loan Type</td>    
-                    <td style={{background:'orange'}}>Status</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Sr.No.</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan id</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>user Name</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan Amount</td>     
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Get Date</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Re-Date</td>
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan Type</td>    
+                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Status</td>
                        
                 </tr>
                
                 {data.map((name,index) => (
                 
                  <tr> 
-                 <td style={{background:'white'}}>{index+1}</td>
-                 <td style={{background:'white'}}>{name.id}</td>
-                 <td style={{background:'white'}}>{name.user_name}</td>
-                 <td style={{background:'white'}}>{name.loan_amt}</td>  
-                 <td style={{background:'white'}}>{name.get_date}</td>
-                 <td style={{background:'white'}}>{name.r_date}</td>  
-                 <td style={{background:'white'}}>{name.loan_type}</td>
-                 <td style={{background:'white'}}>{name.loan_status}</td>             
+                 <td className="p-1 border-2 border-black text-center" style={{background:'white'}}>{index+1}</td>
+                 <td className="p-1 border-2 border-black"style={{background:'white'}}>{name.id}</td>
+                 <td className="p-1 border-2 border-black"style={{background:'white'}}>{name.user_name}</td>
+                 <td className="p-1 border-2 border-black text-right"style={{background:'white'}}>{name.loan_amt}</td>  
+                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.get_date}</td>
+                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.r_date}</td>  
+                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.loan_type}</td>
+                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.loan_status}</td>             
              </tr>
       ))}
               <tr> 
                     <td colSpan="3" style={{background:'orange'}}>Total Geted Loan</td>
                   
-                    <td style={{background:'orange'}}>{loan_amt}</td>     
-                    <td colSpan="3" style={{background:'orange'}}>Total Returned Loan </td>
-                    <td style={{background:'orange'}}>{loan_amt_returned}</td>
+                    <td className="p-1 border-2 border-black text-right"style={{background:'orange'}}>{loan_amt}</td>     
+                    <td className="p-1 border-2 border-black "colSpan="3" style={{background:'orange'}}>Total Returned Loan </td>
+                    <td className="p-1 border-2 border-black text-right"style={{background:'orange'}}>{loan_amt_returned}</td>
                  
                  
                        
