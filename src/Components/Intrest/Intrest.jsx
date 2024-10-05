@@ -101,12 +101,12 @@ const handleAddIntrest =() =>{
   }
 
   return (
-    <div className='deposite-page'>
-       <div className='add-deposite border-[5px] border-gray-800'>
+    <div className='deposite-page  '>
+       <div className='add-deposite border-[5px] border-gray-800 '>
               <h1 className='text-4xl font-bold text-orange-600 items-center' >Add Intrest</h1>
                
               <select className='mb-5 border-2 border-purple-500  selectloan' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
-               <option>Select The User Name...</option>
+               <option>User Name...</option>
               {names.map((name,index) => (
                  <option >{name.user_name}</option>
               ))}
@@ -124,8 +124,8 @@ const handleAddIntrest =() =>{
 
         <h2 className='mt-9 text-3xl text-center w-[300px] rounded-full bg-orange-600 p-2 ml-auto mr-auto'> All Users <br /> Intrest Table </h2>
        
-        <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'> 
-        <table className='w-full mb-9'>
+        <div className=' text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'> 
+        <table className='overflow-x-scroll w-full mb-9'>
               
                 <tr className='border-2 border-black'> 
                     <td className='p-1 border-2 border-black text-center' style={{background:'orange'}}>Sr.No.</td>

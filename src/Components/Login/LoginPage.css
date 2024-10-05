@@ -9,7 +9,8 @@
    height:100vh;
   background: url(../../assets/bg3.jpg)no-repeat;
   background-size: cover;
-padding-top:90px;
+padding-top:0px;
+overflow: scroll;
  
 }
 
@@ -18,7 +19,7 @@ padding-top:90px;
     background:rgb(248, 237, 237);
     margin-left:auto;
     margin-right: auto;
-    margin-top:100px;
+    margin-top:50px;
     border:2px solid rgb(243, 107, 23);
     border-radius: 5px;
    

@@ -54,18 +54,3 @@
     border-radius: 20px;
     margin-top:-10px;
 }
-@media screen and (min-width:0px ) and (max-width:849px){
-  
-    .deposite-page{
-        background-image: url(../../assets/bg2.jpg);
-        
-    }
-    .depositeName{
-        font-size:30px;
-        margin-top: 30px;
-        max-width:300px;
-    }
-   
-   
-
-}

@@ -115,33 +115,33 @@ useEffect(()=>{
 
         <div className="m-9  bg-[rgba(255,255,255,0.8)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Balance At Bank</h1>
-          {balanceAtBank>=0?<h1 className='text-green-600  pt-2'>Rs.{ balanceAtBank}</h1>:<h1 className='text-red-600 pt-2'>Rs.{ balanceAtBank}</h1>}
+          {balanceAtBank>=0?<h1 className='text-green-600  pt-2'>Rs. { balanceAtBank}</h1>:<h1 className='text-red-600 pt-2'>Rs.{ balanceAtBank}</h1>}
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Deposite</h1>
-          {<h1 className='text-black pt-2'> Rs.{totalDeposite}</h1>}
+          {<h1 className='text-black pt-2'> Rs. {totalDeposite}</h1>}
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Intrest</h1>
-          {<h1 className='text-black pt-2'>Rs.{totalIntrest}</h1>}
+          {<h1 className='text-black pt-2'>Rs. {totalIntrest}</h1>}
         </div>
 
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Penaly</h1>
-          {<h1 className='text-black pt-2'> Rs.{totalPenalty}</h1>}
+          {<h1 className='text-black pt-2'> Rs. {totalPenalty}</h1>}
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Expendature</h1>
-          {<h1 className='text-black pt-2'> Rs.{totalExpendature}</h1>}
+          {<h1 className='text-black pt-2'> Rs. {totalExpendature}</h1>}
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Geted Loan by user</h1>
-          {<h1 className='text-black pt-2'>Rs.{totalGetedLoan }</h1>}
+          {<h1 className='text-black pt-2'>Rs. {totalGetedLoan }</h1>}
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">

@@ -5,24 +5,23 @@ import Logo from "../../assets/logo.jpg"
 
 const Navbar = () => {
 
-  const [style, setStyle] = useState("SidebarIn");
+  const [style, setStyle] = useState(0);
   const [style11, setStyle11] = useState("firstline");
   const [style12, setStyle12] = useState("Secondline");
   const [style13, setStyle13] = useState("thirdline");
  
   const handleClick = () => {
-      if (style === "SidebarIn"){
-        setStyle("SidebarOut");
-        setStyle11("firstlineCros")
-        setStyle12("SecondlineCros")
-        setStyle13("thirdlineCros")
-       
-      }
-      else{ 
-        setStyle("SidebarIn");
+      if (style){
+        setStyle(0);
         setStyle11("firstline");
         setStyle12("Secondline");
         setStyle13("thirdline");
+      }
+      else{ 
+        setStyle(1);
+        setStyle11("firstlineCros");
+        setStyle12("SecondlineCros");
+        setStyle13("thirdlineCros");
       
       }
   };
@@ -70,18 +69,20 @@ const Navbar = () => {
     
       <div>
       {!(auth) ? (
-         <div className={"listItems ",style}>
-        
-        <Link to="/">  <li style={{width:'150px'}}>Admin Page</li></Link>
-      <Link to="about"> <li>About</li></Link> 
-        <Link to="login"> <li>Login</li></Link> 
-      <Link to="contact"> <li>Contact</li></Link> 
+         <div className={!style?`w-fit h-fit bg-black fixed ml-[-200px]`:`w-fit h-fit bg-black fixed` }>
+         <li className="do-not-delet w-[180px] h-0"></li>
+       
+        <Link  to="/">  <li style={{width:'150px'}}>Admin Page</li></Link>
+      <Link  to="about"> <li>About</li></Link> 
+        <Link  to="login"> <li>Login</li></Link> 
+      <Link  to="contact"> <li>Contact</li></Link> 
          </div>
       ) : (
-        <div className={"listItems ",style}>
-        <Link  to="dashboard"><li style={{color:'orange',width:'180px'}}>Hi. {localStorage.getItem('team')}</li></Link> 
-      
-        <Link to="sign_up"> <li  style={{width:'180px'}}> Create user</li></Link> 
+        <div className={!style?`w-fit h-fit bg-black fixed ml-[-200px]`:`w-fit h-fit bg-black fixed` }>
+        <li className="do-not-delet w-[180px] h-0"></li>
+        <Link to="dashboard"><li style={{color:'orange',width:'180px'}}>Hi.{localStorage.getItem('team')}</li></Link> 
+       
+        <Link  to="sign_up"> <li  style={{width:'180px'}}> Create user</li></Link> 
        <Link to="deposites"> <li>Deposites</li></Link> 
        <Link to="loans"> <li>Loans</li></Link> 
        <Link to="intrests"> <li>Intrests</li></Link> 

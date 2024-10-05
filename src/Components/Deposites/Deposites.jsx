@@ -80,13 +80,13 @@ useEffect(()=>{
               <h1 className='text-4xl font-bold text-orange-600 items-center' >Add Deposite</h1>
              <br />
               <select className='border-2 border-purple-500  selectloan' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
-               <option>Select The User Name...</option>
+               <option>User Name...</option>
               {data.map((name,index) => (
                  <option >{name.user_name}</option>
               ))}
               </select><br></br><br></br>
               <select className='border-2 border-purple-500  selectloan'type="number" placeholder='Select the amount..' value={amount} onChange={(e) => setAmount(e.target.value)}>
-                  <option>Select The User Amount...</option>  
+                  <option>Select Amt...</option>  
                   <option> 300</option>
                   <option> 500</option>
                   <option>-300</option>

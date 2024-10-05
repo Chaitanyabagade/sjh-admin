@@ -152,13 +152,13 @@ useEffect(()=>{
         <div className='add-deposite border-[5px] border-gray-800 '>
               <h1 className='text-4xl font-bold  text-center text-orange-600' >Add Loan</h1>
               <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
-               <option>Select The User Name...</option>
+               <option>  User Name...</option>
               {names.map((name,index) => (
                  <option >{name.user_name}</option>
               ))}
-              </select> <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="number" placeholder='Enter the amount..' value={amount} onChange={(e) => setAmount(e.target.value)}/>
-              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='Enter the get date..' value={getDate} onChange={(e) => setGetDate(e.target.value)} />
-              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Enter the return date..' value={rDate} onChange={(e) => setRDate(e.target.value)}/>
+              </select> <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="number" placeholder='Amount..' value={amount} onChange={(e) => setAmount(e.target.value)}/>
+              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='Get date..' value={getDate} onChange={(e) => setGetDate(e.target.value)} />
+              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Return date..' value={rDate} onChange={(e) => setRDate(e.target.value)}/>
               <select className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text"  value={loanType} onChange={(e) => setLoanType(e.target.value)}>
                   <option>EMI</option>
                   <option>EDI</option>
@@ -168,15 +168,15 @@ useEffect(()=>{
         </div>
         <div className='add-deposite border-[5px] border-gray-800'>
               <h1 className='text-orange-600 text-4xl font-bold' >Edit Loan Status</h1>
-              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='user name..' value={name2} onChange={(e) => setName2(e.target.value)} >
-               <option>Select The User Name...</option>
+              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='User name..' value={name2} onChange={(e) => setName2(e.target.value)} >
+               <option>User Name...</option>
               {names.map((name,index) => (
                  <option >{name.user_name}</option>
               ))}
               </select>
-              <input className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="number" placeholder='Enter the loan id..' value={id} onChange={(e) => setId(e.target.value)}/>
+              <input className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="number" placeholder='Loan id..' value={id} onChange={(e) => setId(e.target.value)}/>
              
-              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="text" placeholder='Enter return date..' value={loan_status} onChange={(e) => setLoanStatus(e.target.value)}>
+              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="text" placeholder='Return date..' value={loan_status} onChange={(e) => setLoanStatus(e.target.value)}>
                   <option>Get</option>
                   <option>Returned</option>
               </select>

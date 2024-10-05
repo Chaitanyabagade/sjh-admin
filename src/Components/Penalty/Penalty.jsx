@@ -112,7 +112,7 @@ useEffect(()=>{
               <h1 className='text-4xl font-bold text-orange-600 items-center' >Add Penalty</h1>
              
               <select className='  mb-3 border-2 border-purple-500  selectloan ' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
-               <option>Select The User Name...</option>
+               <option>User Name...</option>
               {names.map((name,index) => (
                  <option >{name.user_name}</option>
               ))}
