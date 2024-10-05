@@ -34,6 +34,12 @@ const Login = () => {
 
        axios.post(url,fData).then((result)=>{
           if(result.data.Status === '200'){
+            ///  logout first 
+            window.localStorage.removeItem('mobile_no');
+            window.localStorage.removeItem('user_name');
+            window.localStorage.removeItem('team');
+            window.localStorage.removeItem('reload_flag');
+          // login other
              window.localStorage.setItem('mobile_no',result.data.mobile_no);
              window.localStorage.setItem('user_name',result.data.user_name);
              window.localStorage.setItem('team',result.data.team);

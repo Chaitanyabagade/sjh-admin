@@ -4,6 +4,8 @@ import axios from 'axios';
 const Deposites = () => {
 const [data,setData]=useState([]);
 
+
+
 const[dep_amt,setDep_amt]=useState(0);
 function getTotalDeposite(){
   

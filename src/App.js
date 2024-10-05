@@ -12,6 +12,7 @@ import Deposites from './Components/Deposites/Deposites';
 import Loan from './Components/Loan/Loan';
 import Intrest from './Components/Intrest/Intrest';
 import Penalty from './Components/Penalty/Penalty';
+import Expendature from './Components/Expendature/Expendature';
 
 function App() {
  
@@ -34,6 +35,8 @@ function App() {
                <Route path="loans" element={<Loan/>}/>
                <Route path="intrests" element={<Intrest/>}/>
                <Route path="penaltys" element={<Penalty/>}/>
+               <Route path="expendatures" element={<Expendature/>}/>
+             
                
                
             
