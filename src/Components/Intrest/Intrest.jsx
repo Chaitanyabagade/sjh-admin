@@ -91,6 +91,7 @@ const handleAddIntrest =() =>{
 
      axios.post(url,fData).then((result)=>{
       getData();
+      getTotalIntrest();
      })
      .catch(error=> alert(error," Try Again...!"));
     

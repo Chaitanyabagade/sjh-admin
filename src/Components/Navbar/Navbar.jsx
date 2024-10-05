@@ -44,11 +44,13 @@ const Navbar = () => {
        navigate('/');
        
     }
-    setAuth(auth);
+    else{
+      setAuth(auth);
+    }
+    
   },[])
   
   
- 
     
    
   return (

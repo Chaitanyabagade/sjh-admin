@@ -8,8 +8,8 @@ const Logout = () => {
            localStorage.removeItem("mobile_no");
            localStorage.removeItem("user_name");  
            localStorage.removeItem("team"); 
-           
-          
+           navigate("/");
+           localStorage.setItem('reload_flag',1);
         }
 
         else{
