@@ -85,7 +85,7 @@ const Navbar = () => {
         <Link  to="sign_up"> <li  style={{width:'180px'}}> Create user</li></Link> 
        <Link to="deposites"> <li>Deposites</li></Link> 
        <Link to="loans"> <li>Loans</li></Link> 
-       <Link to="intrests"> <li>Intrests</li></Link> 
+       
        <Link to="penaltys"> <li>Penaltys</li></Link>
        <Link  to="expendatures"> <li>Expendature</li></Link>
        <a  href="logout"><li>Logout</li></a>  

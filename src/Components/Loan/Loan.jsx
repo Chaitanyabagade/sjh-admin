@@ -1,232 +1,337 @@
 import React, { useEffect, useState } from 'react'
-
+import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
 const Loan = () => {
 
-const [data,setData]=useState([]);
+  const [data, setData] = useState([]);
 
-const [names,setNames]=useState([]);
-function getTotalNames(){
-  
-  const url2=`${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
-  let fData2= new FormData();
-  fData2.append('name',localStorage.getItem('team'));
-  
-  axios.post(url2,fData2).then((response) => {
-    const APIResponse = response.data;// This is response data from AXIOS
-    setNames(APIResponse); // Only Response from API is set in state
-  }).catch(error=> alert(error," Try Again...!"));
- 
+  const [names, setNames] = useState([]);
+  function getTotalNames() {
 
-}
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
 
-const[loan_amt_returned,setloan_amt_returned]=useState(0);
-function getTotalLoanReturned(){
-  const url2=`${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoanReturned.php`;
-  let fData2= new FormData();
-  fData2.append('name',localStorage.getItem('team'));
-
-  axios.post(url2,fData2).then((response) => {
-    const APIResponse = response.data;// This is response data from AXIOS
-  setloan_amt_returned(APIResponse); // Only Response from API is set in state
-  }).catch(error=> alert(error," Try Again...!"));
-
-}
+    axios.post(url2, fData2).then((response) => {
+      const APIResponse = response.data;// This is response data from AXIOS
+      setNames(APIResponse); // Only Response from API is set in state
+    }).catch(error => alert(error, " Try Again...!"));
 
 
-const[loan_amt,setloan_amt]=useState(0);
-function getTotalLoan(){
-  const url2=`${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoan.php`;
-  let fData2= new FormData();
-  fData2.append('name',localStorage.getItem('team'));
+  }
 
-  axios.post(url2,fData2).then((response) => {
-    const APIResponse = response.data;// This is response data from AXIOS
-  setloan_amt(APIResponse); // Only Response from API is set in state
-  }).catch(error=> alert(error," Try Again...!"));
+  const[total_intrest_amt,setTotal_intrest_amt]=useState(0);
+  function getTotalIntrest() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalIntrest.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
 
-}
+    axios.post(url2, fData2).then((response) => {
+      const APIResponse = response.data;// This is response data from AXIOS
+      setTotal_intrest_amt(APIResponse); // Only Response from API is set in state
+    }).catch(error => alert(error, " Try Again...!"));
 
-
- function getData(){
-  const url=`${process.env.REACT_APP_domain}/sjh-team-api/user_loan.php`;
-  let fData= new FormData();
-  fData.append('name',localStorage.getItem('team'));
-
-  axios.post(url,fData).then((response) => {
-
-    const APIResponse = response.data;// This is response data from AXIOS
-    setData(APIResponse); // Only Response from API is set in state
-  }).catch(error=> alert(error," Try Again...!"));
-}  
-useEffect(()=>{
-  getData();
-  getTotalLoanReturned();
-  getTotalLoan();
-  getTotalNames();
-},[])
+  }
 
 
 
-  const[name,setName]=useState("");
-  const[amount,setAmount]=useState();
-  const[loanType,setLoanType]=useState("EMI");
-  const[getDate,setGetDate]=useState("");
-  const[rDate,setRDate]=useState("");
-  
-  const handleAddLoan =() =>{
-     console.log(name,amount);
-     if(name.length===0){
-          alert("User Name is left");
-     }   
-    else if(amount.length===0){
-      alert("Amount is left");
-     }
-     else if(getDate.length===0){
-      alert("get date is left");
-     }
-     else if(rDate.length===0){
-      alert("return date is left");
-     }
-     else if(loanType.length===0){
-      alert("loan type is left");
-     }
-    else{
-       const url=`${process.env.REACT_APP_domain}/sjh-team-api/admin/add_loan.php`;
-       let fData= new FormData();
-       fData.append('name',name);
-       fData.append('amount',amount);
-       fData.append('get_date',getDate);
-       fData.append('r_date',rDate);
-       fData.append('loan_type',loanType);
-       fData.append('team',localStorage.getItem('team'));
+  const [loan_amt_returned, setloan_amt_returned] = useState(0);
+  function getTotalLoanReturned() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoanReturned.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
 
-       axios.post(url,fData).then((result)=>{
-          if(result.data===1){
-            getData();
-            getTotalLoan();
-            getTotalLoanReturned();
+    axios.post(url2, fData2).then((response) => {
+      const APIResponse = response.data;// This is response data from AXIOS
+      setloan_amt_returned(APIResponse); // Only Response from API is set in state
+    }).catch(error => alert(error, " Try Again...!"));
+
+  }
+
+
+
+  const [loan_amt, setloan_amt] = useState(0);
+  function getTotalLoan() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoan.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+
+    axios.post(url2, fData2).then((response) => {
+      const APIResponse = response.data;// This is response data from AXIOS
+      setloan_amt(APIResponse); // Only Response from API is set in state
+    }).catch(error => alert(error, " Try Again...!"));
+
+  }
+
+
+  function getData() {
+    const url = `${process.env.REACT_APP_domain}/sjh-team-api/user_loan.php`;
+    let fData = new FormData();
+    fData.append('name', localStorage.getItem('team'));
+
+    axios.post(url, fData).then((response) => {
+
+      const APIResponse = response.data;// This is response data from AXIOS
+      setData(APIResponse); // Only Response from API is set in state
+    }).catch(error => alert(error, " Try Again...!"));
+  }
+
+
+
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState();
+  const [loanType, setLoanType] = useState("EMI");
+  const [getDate, setGetDate] = useState("");
+  const [duration, setDuration] = useState();
+
+  const handleAddLoan = () => {
+    if (confirm(`Conferm to Add loan of user => ${name} and duration => ${duration}`)) {
+      if (name.length === 0) {
+        alert("User Name is left");
+      }
+      else if (amount.length === 0) {
+        alert("Amount is left");
+      }
+      else if (getDate.length === 0) {
+        alert("get date is left");
+      }
+      else if (duration.length === 0) {
+        alert("duration is left");
+      }
+      else if (loanType.length === 0) {
+        alert("loan type is left");
+      }
+      else {
+        const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/add_loan.php`;
+        let fData = new FormData();
+        fData.append('name', name);
+        fData.append('amount', amount);
+        fData.append('get_date', getDate);
+        fData.append('duration', duration);
+        fData.append('loan_type', loanType);
+        fData.append('team', localStorage.getItem('team'));
+
+        axios.post(url, fData).then((result) => {
+          if (result.data === 1) {
+              getData();
+              getTotalLoan();
+              getTotalLoanReturned();
+              getTotalIntrest();
           }
-       })
-       .catch(error=> alert(error," Try Again...!"));
+        })
+          .catch(error => alert(error, " Try Again...!"));
       }
     }
+  }
 
 
-  const[id,setId]=useState();
-  const[name2,setName2]=useState("");
-  const[loan_status,setLoanStatus]=useState("Get");
-  
-  const handleEditLoan =() =>{
-    
-     if(name2.length===0){
-          alert("User Name is left");
-     }   
-     else if(id.length===0){
-      alert("loan id is left");
-     }
-     else if(loan_status.length===0){
-      alert("loan status is left");
-     }
-    else{
-       const url=`${process.env.REACT_APP_domain}/sjh-team-api/admin/edit_loan.php`;
-       let fData= new FormData();
-       fData.append('name',name2);
-       fData.append('id',id);
-       fData.append('status',loan_status);
-       fData.append('team',localStorage.getItem('team'));
+  const [id, setId] = useState();
+  const [name2, setName2] = useState("");
+  const [loan_Date, setLoanDate] = useState("");
 
-       axios.post(url,fData).then((result)=>{
-          if(result.data===1){
-             getData();
-             getTotalLoan();
-            getTotalLoanReturned();
+  const handleEditLoan = () => {
+    if (confirm(`Conferm to Edit loan of user => ${name2} and loan id => ${id}`)) {
+      if (name2.length === 0) {
+        alert("User Name is left");
+      }
+      else if (id.length === 0) {
+        alert("loan id is left");
+      }
+      else if (loan_Date.length === 0) {
+        alert("now date is left");
+      }
+      else {
+        const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/edit_loan.php`;
+        let fData = new FormData();
+        fData.append('name', name2);
+        fData.append('id', id);
+        fData.append('lastDate', loan_Date);
+        fData.append('team', localStorage.getItem('team'));
+
+        axios.post(url, fData).then((result) => {
+          getData();
+          getTotalLoan();
+          getTotalLoanReturned();
+          getTotalIntrest();
+          if (result.data == 'Aclear') {
+            alert("The User Loan Is Already Cleared If you are in any Problem Please Contact to Technical Manager");
+
+           
+          } else if (result.data == 'Nclear') {
+            alert("Th EMI is successfuly added And The User Loan is Now Clear");
           }
-       })
-       .catch(error=> alert(error," Try Again...!"));
+          else if (result.data == 'yes') {
+            alert("Th EMI is successfuly added..");
+          }
+          else {
+            alert("something is gone wrong please immidiate contact to the technical manager");
+          }
+          
+        })
+          .catch(error => alert(error, " Try Again...!"));
       }
     }
+  }
+
+  
+  useEffect(() => {
+    getData();
+    getTotalLoanReturned();
+    getTotalLoan();
+    getTotalNames();
+    getTotalIntrest();
+  }, []);
+
   return (
-    <div className='deposite-page'>
-        <div className='md:flex md:mt-[50px]'>
-        <div className='add-deposite border-[5px] border-gray-800 '>
-              <h1 className='text-4xl font-bold  text-center text-orange-600' >Add Loan</h1>
-              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='user name..' value={name} onChange={(e) => setName(e.target.value)} >
-               <option>  User Name...</option>
-              {names.map((name,index) => (
-                 <option >{name.user_name}</option>
-              ))}
-              </select> <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="number" placeholder='Amount..' value={amount} onChange={(e) => setAmount(e.target.value)}/>
-              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='Get date..' value={getDate} onChange={(e) => setGetDate(e.target.value)} />
-              <input className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text" placeholder='Return date..' value={rDate} onChange={(e) => setRDate(e.target.value)}/>
-              <select className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600 'type="text"  value={loanType} onChange={(e) => setLoanType(e.target.value)}>
-                  <option>EMI</option>
-                  <option>EDI</option>
-                  <option>EFI</option>
+    <div className='deposite-page bg-gradient-to-r from-violet-200 to-pink-200'>
+
+      <div className="lg:flex justify-center ">
+        <div className="flex items-center justify-center h-fit mt-10 lg:m-[100px] m-[20px] mb-0 lg:w-[400px] ">
+          <div className=" text-xl bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Loan</h2>
+
+            {/* Select Field 1 */}
+            <div className="mb-4">
+              <select value={name} onChange={(e) => setName(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
+                <option>User Name...</option>
+                {names.map((name, index) => (
+                  <option >{name.user_name}</option>
+                ))}
               </select>
-              <button className='button text-4xl bg-blue-600 rounded-full w-[32%] ml-[34%] m-5' onClick={handleAddLoan}>Add</button>
-        </div>
-        <div className='add-deposite border-[5px] border-gray-800'>
-              <h1 className='text-orange-600 text-4xl font-bold' >Edit Loan Status</h1>
-              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600' type='text'placeholder='User name..' value={name2} onChange={(e) => setName2(e.target.value)} >
-               <option>User Name...</option>
-              {names.map((name,index) => (
-                 <option >{name.user_name}</option>
-              ))}
+            </div>
+
+            {/* Select Field 2 */}
+            <div className="mb-4">
+              <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Enter Amount' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+            </div>
+
+            {/* Select Field 2 */}
+            <div className="mb-4">
+              <input value={getDate} onChange={(e) => setGetDate(e.target.value)} placeholder='Enter Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+            </div>
+            {/* Select Field 2 */}
+            <div className="mb-4">
+              <input value={duration} onChange={(e) => setDuration(e.target.value)} placeholder='Enter Duration' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+            </div>
+
+            <div className="mb-4">
+              <select value={loanType} onChange={(e) => setLoanType(e.target.value)} placeholder='Enter R-Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
+                <option>EMI</option>
+
               </select>
-              <input className=' w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="number" placeholder='Loan id..' value={id} onChange={(e) => setId(e.target.value)}/>
-             
-              <select className='w-80% mt-[5px] pl-2 pr-2 text-3xl w-[95%]  ml-[5px] mr-3 rounded-full border-2 border-purple-600'type="text" placeholder='Return date..' value={loan_status} onChange={(e) => setLoanStatus(e.target.value)}>
-                  <option>Get</option>
-                  <option>Returned</option>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              onClick={handleAddLoan}
+              className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center hover:bg-blue-600 transition duration-300"
+            >
+              <FaPaperPlane className="mr-2" />
+              Submit
+            </button>
+          </div>
+        </div>
+
+
+        <div className="flex items-center justify-center h-fit mt-10 lg:m-[100px] m-[20px] mb-0  lg:w-[400px]  ">
+          <div className=" text-xl bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Lona EMI</h2>
+
+            {/* Select Field 1 */}
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-semibold mb-2">User Name</label>
+              <select value={name2} onChange={(e) => setName2(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
+                <option>User Name...</option>
+                {names.map((name, index) => (
+                  <option >{name.user_name}</option>
+                ))}
               </select>
-              <button className='button text-4xl bg-blue-600 rounded-full w-[32%] ml-[34%] m-5' onClick={handleEditLoan}>Edit</button>
+            </div>
+
+            {/* Select Field 2 */}
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm font-semibold mb-2">Loan Id</label>
+              <input value={id} onChange={(e) => setId(e.target.value)} placeholder='Enter Loan id..' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+
+            </div>
+
+            <label className="block text-gray-700 text-sm font-semibold mb-2">Now Date</label>
+            <div className="mb-9">
+              <input value={loan_Date} onChange={(e) => setLoanDate(e.target.value)} placeholder='Enter now Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+
+            </div>
+
+            {/* Submit Button */}
+            <button
+              onClick={handleEditLoan}
+              className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center hover:bg-blue-600 transition duration-300"
+            >
+              <FaPaperPlane className="mr-2" />
+              Submit
+            </button>
+          </div>
         </div>
-        </div>
-        <h2 className='depositeName'> All Users Loans Table </h2>
-        <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'> 
-       
-        <table className='w-full' >
-              
-        <tr> 
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Sr.No.</td>
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan id</td>
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>user Name</td>
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan Amount</td>     
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Get Date</td>
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Re-Date</td>
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Loan Type</td>    
-                    <td  className="p-1 border-2 border-black text-center" style={{background:'orange'}}>Status</td>
-                       
-                </tr>
-               
-                {data.map((name,index) => (
-                
-                 <tr> 
-                 <td className="p-1 border-2 border-black text-center" style={{background:'white'}}>{index+1}</td>
-                 <td className="p-1 border-2 border-black"style={{background:'white'}}>{name.id}</td>
-                 <td className="p-1 border-2 border-black"style={{background:'white'}}>{name.user_name}</td>
-                 <td className="p-1 border-2 border-black text-right"style={{background:'white'}}>{name.loan_amt}</td>  
-                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.get_date}</td>
-                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.r_date}</td>  
-                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.loan_type}</td>
-                 <td className="p-1 border-2 border-black text-center"style={{background:'white'}}>{name.loan_status}</td>             
-             </tr>
-      ))}
-              <tr> 
-                    <td colSpan="3" style={{background:'orange'}}>Total Geted Loan</td>
-                  
-                    <td className="p-1 border-2 border-black text-right"style={{background:'orange'}}>{loan_amt}</td>     
-                    <td className="p-1 border-2 border-black "colSpan="3" style={{background:'orange'}}>Total Returned Loan </td>
-                    <td className="p-1 border-2 border-black text-right"style={{background:'orange'}}>{loan_amt_returned}</td>
-                 
-                 
-                       
-                </tr>
-           
-           
+
+      </div>
+
+      <h2 className='depositeName  text-center text-green-700 text-4xl font-bold '> All Users Loan </h2>
+      <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'>
+
+        <table className='w-full text-[25px]' >
+
+          <tr>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Sr.No.</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan id</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>user Name</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Amt Returned</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Intrest Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Intrest Amt Returened</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Type</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Duration</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Count</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Rate</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Date</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Last EMI Paid Date</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Status</td>
+          </tr>
+
+          {data.map((item, index) => (
+            <tr>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{index+1}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.id}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.user_name}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_intrest}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_intrest_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_type}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_duration}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_count}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_rate}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.Loan_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.last_paid_date}</td>
+              <td className={`pl-1 pr-1 border-2 border-black text-center ${item.status=='Clear'?"bg-green-500":"bg-red-400"}`} >{item.status}</td>
+            </tr>
+          ))}
+
+          <tr>
+
+               <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Returned Loan</td>
+               <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt_returned}</td>
+          
+               <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Dispatched Loan</td>
+               <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt}</td>
+        
+               <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Intrest ==></td>
+               <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{total_intrest_amt}</td>
+
+          </tr>
+
         </table>
-      </div> 
+      </div>
     </div>
   )
 }

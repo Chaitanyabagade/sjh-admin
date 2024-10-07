@@ -140,7 +140,7 @@ useEffect(()=>{
         </div>
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Geted Loan by user</h1>
+          <h1 className='text-black p-2 mt-2'  >Total Dispatched Loan </h1>
           {<h1 className='text-black pt-2'>Rs. {totalGetedLoan }</h1>}
         </div>
 

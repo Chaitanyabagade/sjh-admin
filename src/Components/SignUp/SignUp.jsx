@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './SignUp.css';
+import { FaUser, FaMobileAlt, FaLock } from 'react-icons/fa';
+
 import userimg from '../../assets/userimg.png'
 import passimg from '../../assets/passimg.png'
 import mobileimg from '../../assets/mobileimg.jpg'
@@ -38,22 +40,96 @@ const Login = () => {
     }
   }
   return (
-    <div className='loginpage'>
-       <div className="loginBox mt-[100px] ml-[2%] min-w-[350px] w-[600px] p-5 ">
-       <h1>Create User</h1>
-          <label className='flex  font-bold text-4xl'><img className="w-[60px] h-auto pr-2" src={userimg} alt="" />User Name</label>
-          <input  className=' mt-2 flex font-bold text-3xl rounded-full pl-2 mr-2 w-[95%]' placeholder="Enter your name..." type="text"name="name" value={name} onChange={(e) => setName(e.target.value)}/>
-          <label className="  mt-2 flex  font-bold text-4xl" htmlFor=''><img  className="w-[50px] h-auto pr-2" src={mobileimg} /> Mobile No.</label>
-          <input  className='  flex font-bold text-3xl rounded-full pl-2 mr-2 w-[95%]' placeholder="ex. 1234567890"type="text"name="mobile"value={mobile}onChange={(e) => setMobile(e.target.value)}/>
-          <label className=" mt-2 flex  font-bold text-4xl"htmlFor=''><img className="w-[50px] h-auto pr-2" src={passimg} alt=""/>Admin Pass</label>
-          <input  className='flex font-bold text-3xl rounded-full pl-2 mr-2 w-[95%]' placeholder="Admin Password..."type="password" value={adminPass}onChange={(e) => setAdminPass(e.target.value)}/>
-          <label className=" mt-2 flex  font-bold text-4xl" htmlFor=''><img className="w-[50px] h-auto pr-2" src={passimg} alt=""/>Password</label>
-          <input  className='flex font-bold text-3xl rounded-full pl-2 mr-2 w-[95%]' placeholder="Admin Password..."type="password"name="pass"value={pass}onChange={(e) => setPass(e.target.value)}/>
-          <button  className=" mt-3 text-4xl text-center w-[44%] ml-[28%] rounded-full bg-blue-600"type="submit" onClick={handleSubmit}>Submit</button>
-         
+   <>
+   
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 loginpage">
+      <div className="bg-white p-5 rounded-xl shadow-lg w-96 m-[20px] mt-9"> 
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Create User</h2>
+        <form className='text-xl'>
+          {/* User Name Field */}
+          <div className="mb-6 relative">
+            <label className="block text-gray-700 font-semibold mb-2" htmlFor="username">
+              User Name
+            </label>
+            <span className="absolute left-3 top-10 text-gray-500 text-xl">
+              <FaUser />
+            </span>
+            <input
+              value={name} onChange={(e) => setName(e.target.value)}
+              type="text"
+              id="username"
+              className="w-full  text-xl  pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your username"
+            />
+          </div>
 
-       </div>
+          {/* Mobile No. Field */}
+          <div className="mb-6 relative">
+            <label className="block text-gray-700 font-semibold mb-2" htmlFor="mobile">
+              Mobile No.
+            </label>
+            <span className="absolute left-3 top-10 text-gray-500 text-xl">
+              <FaMobileAlt />
+            </span>
+            <input
+            
+            value={mobile} onChange={(e) => setMobile(e.target.value)}
+              type="tel"
+              id="mobile"
+              className="w-full  text-xl  text-xl pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your mobile number"
+            />
+          </div>
+
+          {/* Password Field */}
+          <div className="mb-6 relative">
+            <label className="block text-gray-700 font-semibold mb-2" htmlFor="password">
+              Password
+            </label>
+            <span className="absolute left-3 top-10 text-gray-500 text-xl">
+              <FaLock />
+            </span>
+            <input
+            value={pass} onChange={(e) => setPass(e.target.value)}
+              type="password"
+              id="password"
+              className="w-full  text-xl  pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your password"
+            />
+          </div>
+           {/*Admin Password Field */}
+           <div className="mb-6 relative">
+            <label className="block text-gray-700 font-semibold mb-2" htmlFor="password">
+              Admin Password
+            </label>
+            <span className="absolute left-3 top-10 text-gray-500 text-xl">
+              <FaLock />
+            </span>
+            <input
+          value={adminPass}onChange={(e) => setAdminPass(e.target.value)}
+              type="password"
+              id="password"
+              className="w-full  text-xl  pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Enter your password"
+            />
+          </div>
+
+
+          {/* Login Button */}
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300 font-semibold"
+          >
+            Login
+          </button>
+
+         
+        </form>
+
+       
+      </div>
     </div>
+    </>
   )
 }
 
