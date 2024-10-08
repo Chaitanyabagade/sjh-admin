@@ -32,14 +32,14 @@ const Footer = () => {
         {/* Newsletter Signup */}
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">Stay Updated</h3>
-          <p className="text-gray-400 mb-3">Subscribe to our newsletter to get the latest updates on loan rates and financial tips.</p>
-          <div className="flex">
+          <p className=" mb-3">Subscribe to our newsletter to get the latest updates on loan rates and financial tips.</p>
+          <div className="flex text-xl">
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full px-3 py-2 rounded-l-lg border-0 focus:ring-2 focus:ring-yellow-500"
+              className="w-full font-extrabold text-black px-3 py-2 rounded-l-lg border-0 focus:ring-2 focus:ring-yellow-500"
             />
-            <button className="bg-yellow-500 text-gray-900 font-semibold px-4 rounded-r-lg hover:bg-yellow-600 transition duration-200">
+            <button className="bg-yellow-500 text-gray-900 font-semibold px-6 rounded-r-lg hover:bg-yellow-600 transition duration-200">
               Subscribe
             </button>
           </div>
