@@ -13,6 +13,8 @@ import Loan from './Components/Loan/Loan';
 
 import Penalty from './Components/Penalty/Penalty';
 import Expendature from './Components/Expendature/Expendature';
+import Footer from './Components/Footer/Footer';
+import Contact from './Components/Contact/Contact';
 
 function App() {
  
@@ -29,22 +31,16 @@ function App() {
                <Route path="login" element={<LoginPages></LoginPages>}> </Route>
                <Route path="sign_up" element={<SignUp></SignUp>}></Route>
                <Route path="about" element={<About></About>}></Route>
+               <Route path="contact" element={<Contact/>}></Route>
                <Route path="dashboard" element={<Dashboard/>}></Route>
                <Route path="logout" element={<Logout/>}/>
                <Route path="deposites" element={<Deposites/>}/>
                <Route path="loans" element={<Loan/>}/>
-              
                <Route path="penaltys" element={<Penalty/>}/>
                <Route path="expendatures" element={<Expendature/>}/>
-             
-               
-               
-            
-
-               
-
-                
+    
           </Routes>
+          <Footer/>
        </BrowserRouter>
     </div>
   );

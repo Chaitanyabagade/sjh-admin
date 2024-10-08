@@ -311,20 +311,20 @@ const Loan = () => {
 
           {data.map((item, index) => (
             <tr>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{index+1}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.id}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.user_name}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_intrest}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_amt_intrest_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.loan_type}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_duration}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_count}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.EMI_rate}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.Loan_date}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center" style={{ background: 'orange' }}>{item.last_paid_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{index+1}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.id}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.user_name}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_intrest}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_intrest_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_type}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_duration}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_count}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_rate}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.Loan_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.last_paid_date}</td>
               <td className={`pl-1 pr-1 border-2 border-black text-center ${item.status=='Clear'?"bg-green-500":"bg-red-400"}`} >{item.status}</td>
             </tr>
           ))}

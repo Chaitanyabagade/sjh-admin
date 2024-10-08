@@ -78,8 +78,8 @@ const Login = () => {
  */}
        
 <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 loginpage">
-      <div className="bg-white p-10 rounded-xl shadow-lg w-96">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Welcome Back</h2>
+      <div className="bg-white m-[20px] p-10 rounded-xl shadow-lg w-96">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Admin Login</h2>
         <form className='text-xl'>
           {/* User Name Field */}
           <div className="mb-6 relative">

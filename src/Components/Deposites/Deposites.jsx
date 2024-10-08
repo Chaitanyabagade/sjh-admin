@@ -74,9 +74,9 @@ const Deposites = () => {
 
   }
   return (
-    <div className='deposite-page justify-center w-[100%] h-[100vh] bg-gradient-to-r pt-[100px] from-violet-200 to-pink-200'>
+    <div className='overflow-scroll deposite-page justify-center w-[100%] h-[100vh] bg-gradient-to-r pt-[100px]  from-violet-200 to-pink-200'>
       <div className="flex items-center justify-center h-fit  m-[20px] ">
-        <form className=" text-xl bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <form className=" text-xl  bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Deposite</h2>
 
           {/* Select Field 1 */}
@@ -117,8 +117,8 @@ const Deposites = () => {
 
       <h1 className='depositeName'> All Users Deposites  </h1>
 
-      <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'>
-        <table className='w-full mb-9'>
+      <div className='  overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'>
+        <table className='w-full mb-11'>
           <tr>
             <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Sr.No.</td>
             <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>user Name</td>
