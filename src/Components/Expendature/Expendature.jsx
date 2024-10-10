@@ -56,12 +56,12 @@ const handleAddExpendature =() =>{
   else{
      const url=`${process.env.REACT_APP_domain}/sjh-team-api/admin/add_Expendature.php`;
      let fData= new FormData();
-  
      fData.append('amount',amount);
      fData.append('date',date);
      fData.append('note',note);
      fData.append('team',localStorage.getItem('team'));
-
+     fData.append('mobile_no', localStorage.getItem('mobile_no'));
+     fData.append('admin_name', localStorage.getItem('user_name'));
      axios.post(url,fData).then((result)=>{
       getData();
       getTotalExpendature();
@@ -69,6 +69,8 @@ const handleAddExpendature =() =>{
      .catch(error=> alert(error," Try Again...!"));
     
     }
+    getData();
+    getTotalExpendature();
 
 
   }

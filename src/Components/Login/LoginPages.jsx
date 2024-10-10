@@ -35,6 +35,7 @@ const Login = () => {
 
        axios.post(url,fData).then((result)=>{
           if(result.data.Status === '200'){
+            
             ///  logout first 
             window.localStorage.removeItem('mobile_no');
             window.localStorage.removeItem('user_name');
@@ -48,6 +49,8 @@ const Login = () => {
              navigate('/dashboard');
           }
           else{
+            console.log(result.data);
+            console.log(result.data.Status);
              alert("invalid user check the details..!");
 
           }
@@ -80,7 +83,7 @@ const Login = () => {
 <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 loginpage">
       <div className="bg-white m-[20px] p-10 rounded-xl shadow-lg w-96">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Admin Login</h2>
-        <form className='text-xl'>
+        <div  className='text-xl'>
           {/* User Name Field */}
           <div className="mb-6 relative">
             <label className="block text-gray-700 font-semibold mb-2" htmlFor="username">
@@ -142,7 +145,7 @@ const Login = () => {
           </button>
 
          
-        </form>
+        </div>
 
        
       </div>
