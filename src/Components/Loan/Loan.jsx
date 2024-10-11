@@ -319,6 +319,7 @@ const Loan = () => {
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Rate</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Date</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Last EMI Paid Date</td>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Provider</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Status</td>
           </tr>
 
@@ -338,6 +339,7 @@ const Loan = () => {
               <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_rate}</td>
               <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.Loan_date}</td>
               <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.last_paid_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_provider}</td>
               <td className={`pl-1 pr-1 border-2 border-black text-center ${item.status == 'Clear' ? "bg-green-500" : "bg-red-400"}`} >{item.status}</td>
             </tr>
           ))}
