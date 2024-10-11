@@ -16,6 +16,7 @@ import Expendature from './Components/Expendature/Expendature';
 import Footer from './Components/Footer/Footer';
 import Contact from './Components/Contact/Contact';
 import Cashbook from './Components/Cashbook.jsx/Cashbook';
+import Remuneration from './Components/Remuneration/Remuneration';
 
 function App() {
  
@@ -39,6 +40,7 @@ function App() {
                <Route path="loans" element={<Loan/>}/>
                <Route path="penaltys" element={<Penalty/>}/>
                <Route path="expendatures" element={<Expendature/>}/>
+               <Route path="remuneration" element={<Remuneration/>}/>
                <Route path="cashbook" element={<Cashbook/>}/>
           </Routes>
           <Footer/>

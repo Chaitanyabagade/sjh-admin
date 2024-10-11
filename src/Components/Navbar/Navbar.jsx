@@ -85,6 +85,7 @@ const Navbar = () => {
             <Link to="loans"> <li>Loans</li></Link>
             <Link to="penaltys"> <li>Penaltys</li></Link>
             <Link to="expendatures"> <li>Expendt.</li></Link>
+            <Link to="remuneration"> <li>Remunart.</li></Link>
             <Link to="cashbook"> <li>CashBook</li></Link>
             <a href="logout"><li>Logout</li></a>
           

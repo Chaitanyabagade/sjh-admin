@@ -26,7 +26,7 @@ const Cashbook = () => {
 
 
     return (
-        <div className='overflow-scroll deposite-page justify-center w-[100%] h-[100vh] bg-gradient-to-r pt-[100px]  from-violet-200 to-pink-200'>
+        <div className='overflow-scroll deposite-page justify-center w-[100%] h-[100vh] bg-gradient-to-r pt-[50px]  from-violet-200 to-pink-200'>
 
             <div className="items-center justify-center h-fit  m-[20px] ">
 
