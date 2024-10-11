@@ -27,13 +27,17 @@ const Login = () => {
       alert("Password is left");
      }
     else{
-       const url=`${process.env.REACT_APP_domain}/sjh-team-api/createAccount.php`;
+       const url=`${process.env.REACT_APP_domain}/sjh-team-api/admin/createAccount.php`;
        let fData= new FormData();
        fData.append('name',name);
        fData.append('mobile',mobile);
        fData.append('pass',pass);
        fData.append('adminPass',adminPass);
        fData.append('email',email);
+       fData.append('adminName',localStorage.getItem('user_name'));
+       fData.append('adminMobile',localStorage.getItem('mobile_no'));
+       fData.append('teamName',localStorage.getItem('team'));
+       
        axios.post(url,fData) .then(response=>alert(response.data)).catch(error=> alert(error));
   
        
@@ -45,7 +49,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-500 loginpage">
       <div className="bg-white p-5 rounded-xl shadow-lg w-96 m-[20px] mt-9"> 
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Create User</h2>
-        <form className='text-xl'>
+        <div className='text-xl'>
           {/* User Name Field */}
           <div className="mb-1 relative">
             <label className="block text-gray-700 font-semibold mb-1" htmlFor="username">
@@ -141,7 +145,7 @@ const Login = () => {
           </button>
 
          
-        </form>
+        </div>
 
        
       </div>
