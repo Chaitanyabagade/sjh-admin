@@ -17,6 +17,7 @@ import Footer from './Components/Footer/Footer';
 import Contact from './Components/Contact/Contact';
 import Cashbook from './Components/Cashbook.jsx/Cashbook';
 import Remuneration from './Components/Remuneration/Remuneration';
+import TransferAnotherAdmin from './Components/TransferAnotherAdmin/TransferAnotherAdmin';
 
 function App() {
  
@@ -42,6 +43,7 @@ function App() {
                <Route path="expendatures" element={<Expendature/>}/>
                <Route path="remuneration" element={<Remuneration/>}/>
                <Route path="cashbook" element={<Cashbook/>}/>
+               <Route path="transfertoaadmin" element={<TransferAnotherAdmin/>}/>
           </Routes>
           <Footer/>
        </BrowserRouter>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { SiGoogleplay, SiAppstore } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -65,6 +66,9 @@ const Footer = () => {
       {/* Bottom Section */}
       <div className="container mx-auto text-center text-gray-500 mt-10">
         <p>© 2024 MoneyWise. All rights reserved.</p>
+      </div>
+      <div className='w-[100px] h-[40px] float-right'>
+          <Link to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
       </div>
     </footer>
   );
