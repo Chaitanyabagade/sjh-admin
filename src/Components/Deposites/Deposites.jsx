@@ -109,7 +109,7 @@ const Deposites = () => {
       <div className="flex items-center justify-center h-fit  m-[20px] ">
 
         <div className=" text-xl  bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Deposite</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Deposit</h2>
 
           {/* Select Field 1 */}
           <div className="mb-4">
@@ -146,7 +146,7 @@ const Deposites = () => {
 
 
 
-      <h1 className='depositeName'> All Users Deposites  </h1>
+      <h1 className='depositeName'> All Users Deposit  </h1>
 
       <div className='  overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'>
         <table className='w-full '>

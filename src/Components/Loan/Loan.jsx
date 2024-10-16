@@ -70,9 +70,10 @@ const Loan = () => {
     fData.append('name', localStorage.getItem('team'));
 
     axios.post(url, fData).then((response) => {
-
+ 
       const APIResponse = response.data;// This is response data from AXIOS
       setData(APIResponse); // Only Response from API is set in state
+      console.log(APIResponse);
     }).catch(error => alert(error, " Try Again...!"));
   }
 
