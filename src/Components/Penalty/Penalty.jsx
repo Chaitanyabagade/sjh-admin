@@ -26,7 +26,7 @@ const Penalty = () => {
   const [penalty_amt, setPen_amt] = useState(0);
   function getTotalpenalty() {
 
-    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalpenalty.php`;
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalPenalty.php`;
     let fData2 = new FormData();
     fData2.append('name', localStorage.getItem('team'));
 
