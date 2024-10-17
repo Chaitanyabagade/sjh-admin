@@ -50,7 +50,7 @@ const LoanRequest = () => {
         const APIResponse = response.data;// This is response data from AXIOS
         setNames(APIResponse); // Only Response from API is set in state
       }).catch(error => alert(error, " Try Again...!"));
-      console.log(names);
+ 
   
     }
 
@@ -89,7 +89,7 @@ const LoanRequest = () => {
                
                 axios.post(url, fData).then((result) => {
                     getData();
-                    getTotalNames();
+                 
                     setSpinner(0);
                     if (result.status == 200) {
                         alert("sucessfuly add..",)
@@ -110,8 +110,7 @@ const LoanRequest = () => {
         getData();
         getTotalloanReqests();
         getTotalNames();
-
-    });
+    },[]);
 
 
 
