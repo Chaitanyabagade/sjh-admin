@@ -18,10 +18,11 @@ import Contact from './Components/Contact/Contact';
 import Cashbook from './Components/Cashbook.jsx/Cashbook';
 import Remuneration from './Components/Remuneration/Remuneration';
 import TransferAnotherAdmin from './Components/TransferAnotherAdmin/TransferAnotherAdmin';
+import Login from './Components/Login/LoginPages';
 
 function App() {
  
-
+  var auth = localStorage.getItem('user_name');
   return (
     
     <div className="App">
@@ -30,7 +31,8 @@ function App() {
 
       <Navbar></Navbar>
           <Routes>
-               <Route path="/" element={<HomePage/>}> </Route>
+
+               <Route path="/" element={auth?<Dashboard/>:<Login/>}> </Route>
                <Route path="login" element={<LoginPages></LoginPages>}> </Route>
                <Route path="sign_up" element={<SignUp></SignUp>}></Route>
                <Route path="about" element={<About></About>}></Route>
