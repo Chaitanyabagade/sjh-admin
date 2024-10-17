@@ -55,6 +55,7 @@ const Cashinfo = ({team,admin_name,index}) => {
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Sr.No.</td>
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Amount</td>
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Note of Transaction</td>
+                    <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Date <br />yyyy-mm-dd</td>
                 </tr>
 
                 {data2.map((name, index) => (
@@ -63,10 +64,12 @@ const Cashinfo = ({team,admin_name,index}) => {
                         <td className='p-1 border-2 border-black text-center ' style={{ background: 'white' }}>{index + 1}</td>
                        <td className={`p-1 border-2 border-black text-right ${name.amount > 0? "text-green-800" :"text-red-800"} `} style={{ background: 'white' }}>{name.amount}</td>
                         <td className='p-1 border-2 border-black text-left pl-2' style={{ background: 'white' }}>{name.note}</td>
+                        <td className='p-1 border-2 border-black text-left pl-2' style={{ background: 'white' }}>{name.last_paid_date}</td>
+                   
                     </tr>
                 ))}
                 <tr >
-                    <td colSpan="2" className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Total</td>
+                    <td colSpan="3" className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Total</td>
                     <td className={`p-1 border-2 border-black text-right  ${total_amt > 0? "text-green-800" :"text-red-800"} `}  style={{ background: 'orange' }}>{total_amt}</td>
                 </tr>
 

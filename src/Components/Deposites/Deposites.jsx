@@ -154,6 +154,7 @@ const Deposites = () => {
             <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Sr.No.</td>
             <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>user Name</td>
             <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Deposite</td>
+            <td className='p-0 border-2 border-black text-center' style={{ background: 'orange' }}><p className=''>Last Date<br/>yyyy-mm-dd</p></td>
           </tr>
 
           {data.map((name, index) => (
@@ -162,10 +163,11 @@ const Deposites = () => {
               <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{index + 1}</td>
               <td className='p-1 border-2 border-black text-' style={{ background: 'white' }}>{name.user_name}</td>
               <td className='p-1 border-2 border-black text-right' style={{ background: 'white' }}>{name.deposite}</td>
+              <td className='p-1 border-2 border-black text-right' style={{ background: 'white' }}>{name.last_paid_date}</td>
             </tr>
           ))}
           <tr>
-            <td colSpan="2" className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Total</td>
+            <td colSpan="3" className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Total</td>
             <td className='p-1 border-2 border-black text-right' style={{ background: 'orange' }}>{dep_amt}</td>
           </tr>
 
