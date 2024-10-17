@@ -171,7 +171,6 @@ const LoanRequest = () => {
                     </tr>
 
                     {data.map((item, index) => (
-
                         <tr>
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{index + 1}</td>
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.id}</td>
@@ -182,7 +181,6 @@ const LoanRequest = () => {
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.request_date}</td>
                             <td className='p-1 border-2 border-black' style={{ background: `${item.status=='Approved..'?'green':item.status=='Seeing..'?'yellow':'red'}` }}>{item.status}</td>
                             <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.reply}</td>
-
                         </tr>
                     ))}
                     <tr className='font-bold'>
