@@ -36,6 +36,25 @@ const LoanRequest = () => {
 
 
     }
+
+
+    const [names, setNames] = useState([]);
+
+    function getTotalNames() {
+  
+      const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
+      let fData2 = new FormData();
+      fData2.append('name', localStorage.getItem('team'));
+  
+      axios.post(url2, fData2).then((response) => {
+        const APIResponse = response.data;// This is response data from AXIOS
+        setNames(APIResponse); // Only Response from API is set in state
+      }).catch(error => alert(error, " Try Again...!"));
+      console.log(names);
+  
+    }
+
+
     const [status, setStatus] = useState("Pending...");
     const [reply,setReply]=useState("");
     const [username,setUserName]=useState("");
@@ -70,6 +89,7 @@ const LoanRequest = () => {
                
                 axios.post(url, fData).then((result) => {
                     getData();
+                    getTotalNames();
                     setSpinner(0);
                     if (result.status == 200) {
                         alert("sucessfuly add..",)
@@ -89,6 +109,7 @@ const LoanRequest = () => {
     useEffect(() => {
         getData();
         getTotalloanReqests();
+        getTotalNames();
 
     });
 
@@ -120,7 +141,7 @@ const LoanRequest = () => {
                         <label className="block text-gray-700 text-sm font-semibold mb-2">Request id</label>
                         <select value={requestId} onChange={(e) => setRequestId(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
                         <option>select id...</option>
-                        {data.map((name, index) => (
+                        {names.map((name, index) => (
                             
                                 <option >{name.id}</option>
                             ))}
