@@ -81,7 +81,7 @@ const Navbar = () => {
             <li className="do-not-delet w-[180px] h-0"></li>
             <Link to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
             <Link to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
-            <Link to="deposites"> <li>Deposites</li></Link>
+            <Link to="deposites"> <li>Deposit</li></Link>
             <Link to="loans"> <li>Loans</li></Link>
             <Link to="penaltys"> <li>Penaltys</li></Link>
             <Link to="expendatures"> <li>Expendt.</li></Link>
