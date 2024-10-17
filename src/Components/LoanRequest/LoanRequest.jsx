@@ -103,7 +103,7 @@ const LoanRequest = () => {
             <div className="flex items-center justify-center h-fit  m-[20px] ">
 
                 <div className=" text-xl  bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Deposit</h2>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Edit Loan Requests</h2>
 
                     {/* Select Field 1 */}
                     <div className="mb-4">
@@ -180,7 +180,7 @@ const LoanRequest = () => {
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.EMI_duration}</td>
                             <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.need_date}</td>
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.request_date}</td>
-                            <td className='p-1 border-2 border-black' style={{ background: 'white' }}>{item.status}</td>
+                            <td className='p-1 border-2 border-black' style={{ background: `${item.status=='Approved..'?'green':item.status=='Seeing..'?'yellow':'red'}` }}>{item.status}</td>
                             <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.reply}</td>
 
                         </tr>
