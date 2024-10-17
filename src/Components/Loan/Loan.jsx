@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 const Loan = () => {
 
   const [data, setData] = useState([]);
@@ -64,7 +65,7 @@ const Loan = () => {
   }
 
 
-  function getData() {
+  function getData(){
     const url = `${process.env.REACT_APP_domain}/sjh-team-api/user_loan.php`;
     let fData = new FormData();
     fData.append('name', localStorage.getItem('team'));
@@ -299,7 +300,7 @@ const Loan = () => {
         </div>
 
       </div>
-
+    <h2 className='depositeName mb-10  text-center text-purple-700 text-4xl font-bold  '>  <Link to="/loanrequests" >See Loan Requests</Link></h2>
       <h2 className='depositeName  text-center text-green-700 text-4xl font-bold '> All Users Loan </h2>
       <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'>
 
