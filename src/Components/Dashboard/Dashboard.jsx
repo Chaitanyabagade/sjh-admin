@@ -166,7 +166,7 @@ useEffect(()=>{
 
         <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
           <h1 className='text-black p-2 mt-2'  >Total Valuation</h1>
-          {((totalDeposite+ totalIntrest + totalPenalty-totalExpendature)-totalDeposite)>=0?<h1 className='text-green-600 pt-2'> Rs. { parseInt((((totalDeposite+ totalIntrest + totalPenalty )-(totalExpendature + totalRemunaration))/numberOfMembersInTeam)) }</h1>:<h1 className='text-red-600 pt-2'> Rs. { parseInt(((totalDeposite+ totalIntrest + totalPenalty )-(totalExpendature))/numberOfMembersInTeam) }</h1>}
+          {(totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)>=totalDeposite? <h1 className='text-green-600 pt-2'> Rs. {(totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)}</h1>:<h1 className='text-red-600 pt-2' > Rs. {(totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)}</h1> }
         </div>
 
 

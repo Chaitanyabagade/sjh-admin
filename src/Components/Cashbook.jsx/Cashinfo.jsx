@@ -55,7 +55,7 @@ const Cashinfo = ({team,admin_name,index}) => {
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Sr.No.</td>
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Amount</td>
                     <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Note of Transaction</td>
-                    <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Date <br />yyyy-mm-dd</td>
+                    <td className='p-1 pl-[50px] pr-[50px] w-fit border-2 border-black text-center' style={{ background: 'orange' }}>Date <br />yyyy-mm-dd</td>
                 </tr>
 
                 {data2.map((name, index) => (
