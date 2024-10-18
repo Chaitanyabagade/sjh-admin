@@ -42,12 +42,19 @@ const TransferAnotherAdmin = () => {
     else if (admin1 === admin2) {
       alert("Both admin names are same please select another...");
     }
+    else if(admin1==='Select Admin 1...'){
+      alert("Admin 1 is left-..");
+    }
+    else if(admin2==='Select Admin 2...'){
+      alert("Admin 2 is left-..");
+    }
     else if (amount <= 0) {
       alert("Amount is left...");
     }
     else if (grandAdminPass.length ===0) {
       alert("grandAdminPass is left...");
     }
+    
     else {
       if (confirm(`Conferm to  Transfer from admin => ${admin1} to admin => ${admin2}`)) {
         setSpinner(1);
