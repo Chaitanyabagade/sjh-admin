@@ -130,7 +130,7 @@ const LoanRequest = () => {
                         <label className="block text-gray-700 text-sm font-semibold mb-2">User Name</label>
                         <select value={username} onChange={(e) => setUserName(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
                             <option>User Name...</option>
-                            {data.map((name, index) => (
+                            {names.map((name, index) => (
                                 <option >{name.user_name}</option>
                             ))}
                         </select>
@@ -140,8 +140,7 @@ const LoanRequest = () => {
                         <label className="block text-gray-700 text-sm font-semibold mb-2">Request id</label>
                         <select value={requestId} onChange={(e) => setRequestId(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
                         <option>select id...</option>
-                        {names.map((name, index) => (
-                            
+                        {data.map((name, index) => (
                                 <option >{name.id}</option>
                             ))}
                         </select>
@@ -175,19 +174,19 @@ const LoanRequest = () => {
 
             <h2 className='mt-9 text-3xl text-center  rounded-full text-green-700 font-extrabold p-2 ml-auto mr-auto'> All Users loanReqests  </h2>
 
-            <div className='overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1200px]'>
-                <table className='w-full '>
+            <div className='overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[380px] sm:w-[600px] md:w-[800px] lg:w-[1100px] xl:w-[1400px]'>
+                <table className=''>
 
                     <tr className='border-2 border-black font-bold'>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Sr.No.</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Request id</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>user Name</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Amount</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Duration</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Need Date</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Request Date</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Status</td>
-                        <td className='p-1 border-2 border-black text-center' style={{ background: 'orange' }}>Reply</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Sr.No.</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Request id</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>user Name</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Amount</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Duration</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Need Date</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Request Date</td>
+                        <td className='p-1 border-2 border-black text-center w-[10%]' style={{ background: 'orange' }}>Status</td>
+                        <td className='pl-[300px] pr-[300px] border-2 border-black text-center w-[200px]' style={{ background: 'orange' }}> Reply </td>
                     </tr>
 
                     {data.map((item, index) => (
@@ -200,7 +199,7 @@ const LoanRequest = () => {
                             <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.need_date}</td>
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.request_date}</td>
                             <td className='p-1 border-2 border-black' style={{ background: `${item.status=='Approved..'?'green':item.status=='Seeing..'?'yellow':'red'}` }}>{item.status}</td>
-                            <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.reply}</td>
+                            <td className='p-0 border-2 border-black text-[25px] pr-2' style={{ background: 'white' }}>{item.reply}</td>
                         </tr>
                     ))}
                     <tr className='font-bold'>
