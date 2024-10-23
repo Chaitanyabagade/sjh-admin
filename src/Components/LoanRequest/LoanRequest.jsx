@@ -150,9 +150,10 @@ const LoanRequest = () => {
                         <label className="block text-gray-700 text-sm font-semibold mb-2">Request Status</label>
                         <select value={status} onChange={(e) => setStatus(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
                             <option>Select Status...</option>
+                            <option> </option>
                             <option> Pending..</option>
-                            <option> Seeing..</option>
                             <option> Approved..</option>
+                            <option> Reject..</option>
                         </select>
                     </div>
                     {/* Select Field 2 */}
@@ -198,7 +199,7 @@ const LoanRequest = () => {
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.EMI_duration}</td>
                             <td className='p-1 border-2 border-black text-right pr-2' style={{ background: 'white' }}>{item.need_date}</td>
                             <td className='p-1 border-2 border-black text-center' style={{ background: 'white' }}>{item.request_date}</td>
-                            <td className='p-1 border-2 border-black' style={{ background: `${item.status=='Approved..'?'green':item.status=='Seeing..'?'yellow':'red'}` }}>{item.status}</td>
+                            <td className='p-1 border-2 border-black' style={{ background: `${item.status=='Approved..'?'green':item.status=='Pending..'?'yellow':'red'}` }}>{item.status}</td>
                             <td className='p-0 border-2 border-black text-[25px] pr-2' style={{ background: 'white' }}>{item.reply}</td>
                         </tr>
                     ))}
