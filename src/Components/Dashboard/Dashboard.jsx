@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
+import { CChart } from '@coreui/react-chartjs';
 import axios  from 'axios';
 const Dashboard = () => {
 
@@ -103,6 +104,9 @@ function getTotalNumberOfMember(){
   }).catch(error=> alert(error," Try Again...!"));
 }
 
+const getStyle = (property) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(property);
+}
 
 
 useEffect(()=>{
@@ -118,7 +122,7 @@ useEffect(()=>{
 },[]);
 
   return (
-    <>
+    <div>
 
       <div className="overflow-y-scroll dashboard-page flex-wrap justify-center grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  lg:grid-cols-[repeat(auto-fill,minmax(400px,1fr))]">
 
@@ -174,7 +178,69 @@ useEffect(()=>{
 
 
       </div>
-    </>
+      <div>
+        <CChart
+          className='w-[100%] h-fit max-h-[500px] overflow-x-scroll' // Enable horizontal scroll
+          type="line"
+          data={{
+            labels: [
+              "Aug−23", "Sep−23", "Oct−23", "Nov−23", "Dec−23",
+              "Jan−24", "Feb−24", "Mar−24", "Apr−24", "May−24",
+              "Jun−24", "Jul−24", "Aug−24", "Sep−24", "Oct−24",
+              "Nov−23", "Dec−23", "Jan−24", "Feb−24", "Mar−24",
+              "Apr−24", "May−24"
+            ],
+            datasets: [
+              {
+                label: "Deposit",
+                backgroundColor: "purple",
+                borderColor: "purple",
+                pointBackgroundColor: "rgba(220, 220, 220, 1)",
+                pointBorderColor: "blue",
+                data: [300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3950, 4350, 4650] // deposit
+              },
+              {
+                label: "Valuation",
+                backgroundColor: "lime",
+                borderColor: "lime",
+                pointBackgroundColor: "rgba(151, 187, 205, 1)",
+                pointBorderColor: "blue",
+                data: [300, 700, 1100, 1500, 1800, 2200, 2600, 3000, 3400, 3700, 4100, 4400, 4750, 5000, 5161] // valuation
+              },
+            ],
+          }}
+          options={{
+            plugins: {
+              legend: {
+                labels: {
+                  color: getStyle('--cui-body-color'),
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  color: 'rgba(200, 200, 200, 0.5)', // Gray color for grid lines
+                },
+                ticks: {
+                  color: getStyle('--cui-body-color'),
+                },
+              },
+              y: {
+                grid: {
+                  color: 'rgba(200, 200, 200, 0.5)', // Gray color for grid lines
+                },
+                ticks: {
+                  color: getStyle('--cui-body-color'),
+                },
+              },
+            },
+          }}
+        />
+
+
+      </div>
+    </div>
   )
 }
 
