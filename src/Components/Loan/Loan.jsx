@@ -262,7 +262,7 @@ const Loan = () => {
 
         <div className="flex items-center justify-center h-fit mt-10 lg:m-[100px] m-[20px] mb-0  lg:w-[400px]  ">
           <div className=" text-xl bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Lona EMI</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Loan EMI</h2>
 
             {/* Select Field 1 */}
             <div className="mb-6">
