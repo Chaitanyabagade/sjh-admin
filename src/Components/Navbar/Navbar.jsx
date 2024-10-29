@@ -34,6 +34,7 @@ const Navbar = () => {
     window.location.reload();
   }
 
+  const [compatible,setCompatible]=useState(1);
 
   let navigate = useNavigate();
   useEffect(() => {
@@ -46,6 +47,11 @@ const Navbar = () => {
     else {
       setAuth(auth);
     }
+    // check device compatiblilty
+    if (typeof(Storage) === "undefined") { 
+       setCompatible(0);
+    } 
+   
 
   }, [])
 
@@ -56,7 +62,13 @@ const Navbar = () => {
 
 
     <div className='NavBox bg-black fixed justify-center z-10 '>
-
+       
+       <div className={compatible?' hidden ':' z-100 fixed w-[100%] h-fit bg-red-600 mx-auto text-center'}>
+        <br />
+           Your Browser is Not Support this web app please update browser <br /><br />
+           <a className='w-fit h-fit pl-5 pr-5 pt-1 pb-1 bg-green-500 mt-[500px] rounded-full' href="https://play.google.com/store/apps/details?id=com.android.chrome&pcampaignid=web_share">Update</a>
+           <br /><br />
+       </div>
       <button onClick={handleClick} className="sideBarButton">
         <div className={style11}></div>
         <div className={style12}></div>
