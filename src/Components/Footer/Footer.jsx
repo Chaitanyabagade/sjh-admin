@@ -101,7 +101,7 @@ const Footer = () => {
         <Link onClick={()=> window.scrollTo(0, 0)}  to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
       </div>
       <div className=''>
-      {teamsnames.map((item, index) => (
+      { teamsnames.length-1 && teamsnames.map((item, index) => (
   <button 
     onClick={() => changeTeam(item.team)} // Use an arrow function to pass the parameter
     key={index} 
