@@ -179,7 +179,8 @@ useEffect(()=>{
 
       </div>
       <div>
-        <CChart
+        {localStorage.getItem('team')=='PavanPutra' &&
+          <CChart
           className='w-[100%] h-fit max-h-[500px] overflow-x-scroll' // Enable horizontal scroll
           type="line"
           data={{
@@ -236,7 +237,7 @@ useEffect(()=>{
               },
             },
           }}
-        />
+        />}
 
 
       </div>

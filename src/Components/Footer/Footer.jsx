@@ -24,6 +24,7 @@ const Footer = () => {
 
   }
   const changeTeam=(team)=>{
+     window.scrollTo(0, 0);
      console.log("team change");
      console.log(team);
      localStorage.setItem('team',team);
@@ -97,7 +98,7 @@ const Footer = () => {
         <p>© 2024 MoneyWise. All rights reserved.</p>
       </div>
       <div className='w-[100px] h-[40px] float-right'>
-        <Link to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
+        <Link onClick={()=> window.scrollTo(0, 0)}  to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
       </div>
       <div className=''>
       {teamsnames.map((item, index) => (

@@ -81,6 +81,7 @@ const Navbar = () => {
         {!(auth) ? (
           <div className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
             <li className="do-not-delet w-[180px] h-0"></li>
+
             <Link to="/">  <li style={{ width: '150px' }}>Admin Page</li></Link>
             <Link to="about"> <li>About</li></Link>
             <Link to="login"> <li>Login</li></Link>
@@ -89,16 +90,17 @@ const Navbar = () => {
           </div>
            
         ) : (
-          <div className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
+          <div  className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
             <li className="do-not-delet w-[180px] h-0"></li>
-            <Link to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
-            <Link to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
-            <Link to="deposites"> <li>Deposit</li></Link>
-            <Link to="loans"> <li>Loans</li></Link>
-            <Link to="penaltys"> <li>Penaltys</li></Link>
-            <Link to="expendatures"> <li>Expendt.</li></Link>
-            <Link to="remuneration"> <li>Remunart.</li></Link>
-            <Link to="cashbook"> <li>CashBook</li></Link>
+
+            <Link onClick={()=> window.scrollTo(0, 0)} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="deposites"> <li>Deposit</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="loans"> <li>Loans</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="penaltys"> <li>Penaltys</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="expendatures"> <li>Expendt.</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="remuneration"> <li>Remunart.</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="cashbook"> <li>CashBook</li></Link>
             <a href="logout"><li>Logout</li></a>
           
           </div>
