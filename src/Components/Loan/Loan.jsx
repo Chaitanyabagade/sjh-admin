@@ -9,6 +9,8 @@ const Loan = () => {
   const [names, setNames] = useState([]);
   function getTotalNames() {
 
+
+
     const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
     let fData2 = new FormData();
     fData2.append('name', localStorage.getItem('team'));
@@ -65,13 +67,13 @@ const Loan = () => {
   }
 
 
-  function getData(){
+  function getData() {
     const url = `${process.env.REACT_APP_domain}/sjh-team-api/user_loan.php`;
     let fData = new FormData();
     fData.append('name', localStorage.getItem('team'));
 
     axios.post(url, fData).then((response) => {
- 
+
       const APIResponse = response.data;// This is response data from AXIOS
       setData(APIResponse); // Only Response from API is set in state
       console.log(APIResponse);
@@ -130,8 +132,6 @@ const Loan = () => {
             alert(result.data);
           }
           setSpinner(0);
-
-
         })
           .catch(error => alert(error, " Try Again...!"));
       }
@@ -144,18 +144,23 @@ const Loan = () => {
   const [loan_Date, setLoanDate] = useState("");
 
   const handleEditLoan = () => {
-    if (confirm(`Conferm to Edit loan of user => ${name2} and loan id => ${id}`)) {
-      if (name2.length === 0) {
-        alert("User Name is left");
-      }
-      else if (id.length === 0) {
-        alert("loan id is left");
-      }
-      else if (loan_Date.length === 0) {
-        alert("now date is left");
-      }
 
-      else {
+    if (name2.length === 0) {
+      alert("User Name is left");
+    }
+    else if (id.length === 0) {
+      alert("loan id is left");
+    }
+    else if (id != Actionids) {
+      alert("Action id is not same as id");
+      setActionid(null);
+    }
+    else if (loan_Date.length === 0) {
+      alert("now date is left");
+    }
+
+    else {
+      if (confirm(`Conferm to Edit loan of user => ${name2} and loan id => ${id}`)) {
         setSpinner(1);
         const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/edit_loan.php`;
         let fData = new FormData();
@@ -165,13 +170,14 @@ const Loan = () => {
         fData.append('team', localStorage.getItem('team'));
         fData.append('mobile_no', localStorage.getItem('mobile_no'));
         fData.append('admin_name', localStorage.getItem('user_name'));
-
+        
         axios.post(url, fData).then((result) => {
           getData();
           getTotalLoan();
           getTotalLoanReturned();
           getTotalIntrest();
           setSpinner(0);
+          setActionid(null);
           if (result.status == 200) {
             if (result.data == 'Aclear') {
               alert("The User Loan Is Already Cleared If you are in any Problem Please Contact to Technical Manager");
@@ -204,6 +210,11 @@ const Loan = () => {
     getTotalNames();
     getTotalIntrest();
   }, []);
+
+  const [Actionids, setActionid] = useState(null);
+  const ActionId = async (id) => {
+    setActionid(id);
+  }
 
   return (
     <div className='deposite-page pt-[70px] bg-gradient-to-r from-violet-200 to-pink-200'>
@@ -300,13 +311,14 @@ const Loan = () => {
         </div>
 
       </div>
-    <h2 className='depositeName mb-10  text-center text-purple-700 text-4xl font-bold  '>  <Link to="/loanrequests" >See Loan Requests</Link></h2>
+      <h2 className='depositeName mb-10  text-center text-purple-700 text-4xl font-bold  '>  <Link to="/loanrequests" >See Loan Requests</Link></h2>
       <h2 className='depositeName  text-center text-green-700 text-4xl font-bold '> All Users Loan </h2>
       <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'>
 
         <table className='w-full text-[25px]' >
 
           <tr>
+            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Action</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Sr.No.</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan id</td>
             <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>user Name</td>
@@ -326,33 +338,34 @@ const Loan = () => {
           </tr>
 
           {data.map((item, index) => (
-            <tr>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{index + 1}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.id}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.user_name}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_intrest}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_amt_intrest_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_type}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_duration}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_count}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.EMI_rate}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.Loan_date}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.last_paid_date}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center bg-white text-black" >{item.loan_provider}</td>
+            <tr className={Actionids==item.id?'bg-green-400 mt-5':'bg-white  hover:bg-purple-500'}>
+              <td className={`pl-1 pr-1 border-2 border-black text-center  text-black`} ><button onClick={() => ActionId(item.id)}>Action</button></td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{index + 1}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.id}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-left  text-black" >{item.user_name}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_intrest}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_intrest_returned}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_type}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_amt}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_duration}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_count}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_rate}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.Loan_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.last_paid_date}</td>
+              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_provider}</td>
               <td className={`pl-1 pr-1 border-2 border-black text-center ${item.status == 'Clear' ? "bg-green-500" : "bg-red-400"}`} >{item.status}</td>
             </tr>
           ))}
 
           <tr>
 
-            <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Returned Loan</td>
+            <td colSpan="4" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Returned Loan</td>
             <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt_returned}</td>
 
             <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Dispatched Loan</td>
-            <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt}</td>
+            <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt}</td>
 
             <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Intrest ==></td>
             <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{total_intrest_amt}</td>
