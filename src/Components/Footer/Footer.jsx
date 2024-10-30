@@ -1,9 +1,38 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { SiGoogleplay, SiAppstore } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
+
+
 const Footer = () => {
+
+  const [teamsnames, setTeams] = useState([]);
+  function getTotalTeamsOfAdmin() {
+
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/admin/getAllTeamOfAdmin.php`;
+    let fData2 = new FormData();
+    fData2.append('adminname', localStorage.getItem('user_name'));
+
+    axios.post(url2, fData2).then((response) => {
+      const APIResponse = response.data;// This is response data from AXIOS
+      setTeams(APIResponse); // Only Response from API is set in state
+
+    }).catch(error => alert(error, " Try Again...!"));
+
+
+  }
+  const changeTeam=(team)=>{
+     console.log("team change");
+     console.log(team);
+     localStorage.setItem('team',team);
+     window.location.reload();
+  }
+  useEffect(() => {
+    getTotalTeamsOfAdmin();
+  }, [])
+
   return (
     <footer className="bg-gray-900 text-gray-300 py-12 px-5 mt-11 ">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10  ">
@@ -28,7 +57,7 @@ const Footer = () => {
         </div>
 
         {/* Useful Links */}
-       
+
 
         {/* Newsletter Signup */}
         <div>
@@ -68,7 +97,18 @@ const Footer = () => {
         <p>© 2024 MoneyWise. All rights reserved.</p>
       </div>
       <div className='w-[100px] h-[40px] float-right'>
-          <Link to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
+        <Link to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
+      </div>
+      <div className=''>
+      {teamsnames.map((item, index) => (
+  <button 
+    onClick={() => changeTeam(item.team)} // Use an arrow function to pass the parameter
+    key={index} 
+    className='text-xl text-[red] bg-green-200 p-2 rounded-full ml-5 mr-5 mt-5 font-extrabold'>
+      {item.team}
+  </button>
+))}
+  <br /><br /> <br />
       </div>
     </footer>
   );
