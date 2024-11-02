@@ -52,9 +52,9 @@ useEffect(()=>{
          
             <div className="flex justify-between mt-4">
                 
-                <Link to='cashinfo' onClick={()=>{localStorage.setItem('cashatadmin_name',item.admin_name)}} className="pt-auto pt-3 bg-blue-500 text-white rounded-md px-4 py-2   font-bold  hover:bg-blue-600 transition duration-300">View Details</Link>
+                <Link to='cashinfo' onClick={()=>{localStorage.setItem('cashatadmin_name',item.admin_name)}} className="pt-auto w pt-3 bg-blue-500 text-white rounded-md px-4 py-2   font-bold  hover:bg-blue-600 transition duration-300">View Details</Link>
                 
-                <div className={`${total_amt<0?'bg-red-500':'bg-green-400'} text-white rounded-md px-4 py-2 text-xl w-[150px]`}>₹ {getTotalCashATHand(item.team, item.admin_name)}</div>
+                <div className={`${total_amt<0?'bg-red-500':'bg-green-400'} text-white rounded-md px-4 py-2 text-xl w-[150px] ml-1`}>₹ {getTotalCashATHand(item.team, item.admin_name)}</div>
             </div>
           
           
