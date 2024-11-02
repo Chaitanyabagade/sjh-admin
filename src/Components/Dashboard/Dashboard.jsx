@@ -122,126 +122,84 @@ useEffect(()=>{
 },[]);
 
   return (
-    <div>
-
-      <div className="overflow-y-scroll dashboard-page flex-wrap justify-center grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))]  lg:grid-cols-[repeat(auto-fill,minmax(400px,1fr))]">
-
-
-        <div className="m-9  bg-[rgba(255,255,255,0.8)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Balance At Bank</h1>
-          {balanceAtBank>=0?<h1 className='text-green-600  pt-2'>Rs. { balanceAtBank}</h1>:<h1 className='text-red-600 pt-2'>Rs.{ balanceAtBank}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Deposit</h1>
-          {<h1 className='text-black pt-2'> Rs. {totalDeposite}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Intrest</h1>
-          {<h1 className='text-black pt-2'>Rs. {totalIntrest}</h1>}
-        </div>
-
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Penaly</h1>
-          {<h1 className='text-black pt-2'> Rs. {totalPenalty}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Expendature</h1>
-          {<h1 className='text-black pt-2'> Rs. {totalExpendature}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Dispatched Loan </h1>
-          {<h1 className='text-black pt-2'>Rs. {totalGetedLoan }</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Retured Loan by user</h1>
-          {<h1 className='text-black pt-2'> Rs. { totalReturnedLoan}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Deposit by Per Member</h1>
-          {<h1 className='text-black pt-2'> Rs. { parseInt((totalDeposite)/(numberOfMembersInTeam))}</h1>}
-        </div>
-
-        <div className="m-9  bg-[rgba(255,255,255,0.4)] text-black font-bold text-3xl text-center  hover:shadow-2xl    border-[1px]  border-orange-500 rounded-[15px]  h-fit">
-          <h1 className='text-black p-2 mt-2'  >Total Valuation</h1>
-          {(totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)>=totalDeposite? <h1 className='text-green-600 pt-2'> Rs. { Math.round((totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)/numberOfMembersInTeam)}</h1>:<h1 className='text-red-600 pt-2' > Rs. {Math.round((totalDeposite+totalIntrest+totalPenalty-totalExpendature-totalRemunaration)/numberOfMembersInTeam)}</h1> }
-        </div>
-
-
-
-
-
+    <div className="pt-[100px] min-h-screen bg-gradient-to-r from-gray-50 to-gray-200 p-6">
+  <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    
+    {[
+      { title: "Balance At Bank", value: balanceAtBank, positive: balanceAtBank >= 0 },
+      { title: "Total Deposit", value: totalDeposite },
+      { title: "Total Interest", value: totalIntrest },
+      { title: "Total Penalty", value: totalPenalty },
+      { title: "Total Expenditure", value: totalExpendature },
+      { title: "Total Dispatched Loan", value: totalGetedLoan },
+      { title: "Total Returned Loan by User", value: totalReturnedLoan },
+      { title: "Deposit Per Member", value: parseInt(totalDeposite / numberOfMembersInTeam) },
+      { 
+        title: "Total Valuation", 
+        value: Math.round((totalDeposite + totalIntrest + totalPenalty - totalExpendature - totalRemunaration) / numberOfMembersInTeam), 
+        positive: (totalDeposite + totalIntrest + totalPenalty - totalExpendature - totalRemunaration) >= totalDeposite 
+      }
+    ].map((item, index) => (
+      <div key={index} className="p-5  bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2">{item.title}</h2>
+        <h3 className={`text-2xl font-bold ${item.positive === false ? 'text-red-500' : 'text-green-500'}`}>
+          Rs. {item.value}
+        </h3>
       </div>
-      <div>
-        {localStorage.getItem('team')=='PavanPutra' &&
-          <CChart
-          className='w-[100%] h-fit max-h-[500px] overflow-x-scroll' // Enable horizontal scroll
-          type="line"
-          data={{
-            labels: [
-              "Aug−23", "Sep−23", "Oct−23", "Nov−23", "Dec−23",
-              "Jan−24", "Feb−24", "Mar−24", "Apr−24", "May−24",
-              "Jun−24", "Jul−24", "Aug−24", "Sep−24", "Oct−24",
-              "Nov−23", "Dec−23", "Jan−24", "Feb−24", "Mar−24",
-              "Apr−24", "May−24"
-            ],
-            datasets: [
-              {
-                label: "Deposit",
-                backgroundColor: "purple",
-                borderColor: "purple",
-                pointBackgroundColor: "rgba(220, 220, 220, 1)",
-                pointBorderColor: "blue",
-                data: [300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3950, 4350, 4650] // deposit
-              },
-              {
-                label: "Valuation",
-                backgroundColor: "lime",
-                borderColor: "lime",
-                pointBackgroundColor: "rgba(151, 187, 205, 1)",
-                pointBorderColor: "blue",
-                data: [300, 700, 1100, 1500, 1800, 2200, 2600, 3000, 3400, 3700, 4100, 4400, 4750, 5000, 5161] // valuation
-              },
-            ],
-          }}
-          options={{
-            plugins: {
-              legend: {
-                labels: {
-                  color: getStyle('--cui-body-color'),
-                }
-              }
-            },
-            scales: {
-              x: {
-                grid: {
-                  color: 'rgba(200, 200, 200, 0.5)', // Gray color for grid lines
-                },
-                ticks: {
-                  color: getStyle('--cui-body-color'),
-                },
-              },
-              y: {
-                grid: {
-                  color: 'rgba(200, 200, 200, 0.5)', // Gray color for grid lines
-                },
-                ticks: {
-                  color: getStyle('--cui-body-color'),
-                },
-              },
-            },
-          }}
-        />}
+    ))}
+  </div>
 
-
-      </div>
+  {localStorage.getItem('team') === 'PavanPutra' && (
+    <div className="mt-12 w-full max-h-[800px] overflow-x-auto">
+      <CChart
+        type="line"
+        data={{
+          labels: [
+            "Aug−23", "Sep−23", "Oct−23", "Nov−23", "Dec−23",
+            "Jan−24", "Feb−24", "Mar−24", "Apr−24", "May−24",
+            "Jun−24", "Jul−24", "Aug−24", "Sep−24", "Oct−24",
+          ],
+          datasets: [
+            {
+              label: "Deposit",
+              backgroundColor: "rgba(102, 126, 234, 0.5)",
+              borderColor: "#667EEA",
+              pointBackgroundColor: "#667EEA",
+              pointBorderColor: "#ffffff",
+              data: [300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3950, 4350, 4650],
+            },
+            {
+              label: "Valuation",
+              backgroundColor: "rgba(72, 187, 120, 0.5)",
+              borderColor: "#48BB78",
+              pointBackgroundColor: "#48BB78",
+              pointBorderColor: "#ffffff",
+              data: [300, 700, 1100, 1500, 1800, 2200, 2600, 3000, 3400, 3700, 4100, 4400, 4750, 5000, 5161],
+            },
+          ],
+        }}
+        options={{
+          plugins: {
+            legend: {
+              labels: { color: "#4A5568" },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: "rgba(229, 231, 235, 0.5)" },
+              ticks: { color: "#4A5568" },
+            },
+            y: {
+              grid: { color: "rgba(229, 231, 235, 0.5)" },
+              ticks: { color: "#4A5568" },
+            },
+          },
+        }}
+      />
     </div>
+  )}
+</div>
+
   )
 }
 

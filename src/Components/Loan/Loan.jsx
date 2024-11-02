@@ -170,7 +170,7 @@ const Loan = () => {
         fData.append('team', localStorage.getItem('team'));
         fData.append('mobile_no', localStorage.getItem('mobile_no'));
         fData.append('admin_name', localStorage.getItem('user_name'));
-        
+
         axios.post(url, fData).then((result) => {
           getData();
           getTotalLoan();
@@ -217,7 +217,7 @@ const Loan = () => {
   }
 
   return (
-    <div className='deposite-page pt-[70px] bg-gradient-to-r from-violet-200 to-pink-200'>
+    <div className='deposite-page bg-gradient-to-r from-teal-200 to-green-200 pt-[50px]'>
       <div role="status" className={`${spinner ? "block" : "hidden"} absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2`}>
         <svg aria-hidden="ture" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-900" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
         <span className="sr-only">Loading...</span>
@@ -313,66 +313,65 @@ const Loan = () => {
       </div>
       <h2 className='depositeName mb-10  text-center text-purple-700 text-4xl font-bold  '>  <Link to="/loanrequests" >See Loan Requests</Link></h2>
       <h2 className='depositeName  text-center text-green-700 text-4xl font-bold '> All Users Loan </h2>
-      <div className=' overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[350px] sm:w-[600px] md:w-[750px] lg:w-[1000px] xl:w-[1400px]'>
+      <div className='rounded-[10px] overflow-x-scroll text-[15px] sm:text-2xl md:text-3xl lg:text-4xl ml-auto mr-auto mt-5 bg-black w-[95%]'>
 
-        <table className='w-full text-[25px]' >
-
+        <table className='w-fit text-[25px]'>
           <tr>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Action</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Sr.No.</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan id</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>user Name</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Amt</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Amt Returned</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Intrest Amt</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Intrest Amt Returened</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Type</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Amt</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Duration</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Count</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>EMI Rate</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Date</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Last EMI Paid Date</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Loan Provider</td>
-            <td className="font-bold p-2 pl-3 pr-3 border-2 border-black text-center" style={{ background: 'orange' }}>Status</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Action</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Sr.No.</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan id</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>User Name</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan Amt Returned</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Interest Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Interest Amt Returned</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan Type</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>EMI Amt</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>EMI Duration</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>EMI Count</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>EMI Rate</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan Date</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Last EMI Paid Date</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Loan Provider</td>
+            <td className="font-bold p-2 pl-3 pr-3 border border-gray-300 text-center" style={{ background: 'orange' }}>Status</td>
           </tr>
 
           {data.map((item, index) => (
-            <tr className={Actionids==item.id?'bg-green-400 mt-5':'bg-white  hover:bg-purple-500'}>
-              <td className={`pl-1 pr-1 border-2 border-black text-center  text-black`} ><button onClick={() => ActionId(item.id)}>Action</button></td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{index + 1}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.id}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-left  text-black" >{item.user_name}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_intrest}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_amt_intrest_returned}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_type}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_amt}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_duration}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_count}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.EMI_rate}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.Loan_date}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.last_paid_date}</td>
-              <td className="pl-1 pr-1 border-2 border-black text-center  text-black" >{item.loan_provider}</td>
-              <td className={`pl-1 pr-1 border-2 border-black text-center ${item.status == 'Clear' ? "bg-green-500" : "bg-red-400"}`} >{item.status}</td>
+            <tr className={Actionids === item.id ? 'bg-green-400 mt-5' : 'bg-white hover:bg-purple-500'}>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">
+                <button onClick={() => ActionId(item.id)}>Action</button>
+              </td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{index + 1}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.id}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-left text-black">{item.user_name}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_amt}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_amt_returned}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_amt_intrest}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_amt_intrest_returned}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_type}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.EMI_amt}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.EMI_duration}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.EMI_count}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.EMI_rate}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.Loan_date}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.last_paid_date}</td>
+              <td className="pl-1 pr-1 border border-gray-300 text-center text-black">{item.loan_provider}</td>
+              <td className={`pl-1 pr-1 border border-gray-300 text-center ${item.status === 'Clear' ? 'bg-green-500' : 'bg-red-400'}`}>{item.status}</td>
             </tr>
           ))}
 
           <tr>
+            <td colSpan="4" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>Total Returned Loan</td>
+            <td colSpan="2" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt_returned}</td>
 
-            <td colSpan="4" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Returned Loan</td>
-            <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt_returned}</td>
+            <td colSpan="3" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>Total Dispatched Loan</td>
+            <td colSpan="3" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt}</td>
 
-            <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Dispatched Loan</td>
-            <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{loan_amt}</td>
-
-            <td colSpan="3" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>Total Intrest ==></td>
-            <td colSpan="2" className="pl-1 pr-1 border-2 border-black text-center font-bold p-2" style={{ background: 'orange' }}>{total_intrest_amt}</td>
-
+            <td colSpan="3" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>Total Interest ==></td>
+            <td colSpan="2" className="pl-1 pr-1 border border-gray-300 text-center font-bold p-2" style={{ background: 'orange' }}>{total_intrest_amt}</td>
           </tr>
-
         </table>
+
       </div>
     </div>
   )

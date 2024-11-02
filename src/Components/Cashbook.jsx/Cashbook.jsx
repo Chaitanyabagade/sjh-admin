@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
-import Cashinfo from './Cashinfo';
+import AllAdmin from './AllAdmin';
 const Cashbook = () => {
 
 
@@ -20,24 +20,38 @@ const Cashbook = () => {
 
     }
 
+    ///// get the total balance of admin//////////////
+    const [data2, setData2] = useState([]);
+    const [total_amt, setTotal_amt] = useState(0);
+    const getTotalCashATHand = (team,admin_name)=> {
+       console.log("data feched")
+        const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/admin/getTotalCashAtHand.php`;
+        let fData2 = new FormData();
+        fData2.append('team', team);
+        fData2.append('admin_name', admin_name);
+        axios.post(url2, fData2).then((response) => {
+            const APIResponse = response.data;// This is response data from AXIOS
+            setTotal_amt(APIResponse); // Only Response from API is set in state
+        }).catch(error => alert(error, " Try Again...!"));
+
+    }
+
+    //////////////////////// end of admin balance /////////////////////////////////
+
     useEffect(() => {
         getTotalAdminNames();
     }, [])
 
 
     return (
-        <div className='overflow-scroll deposite-page justify-center w-[100%] h-[100vh] bg-gradient-to-r pt-[50px]  from-violet-200 to-pink-200'>
-
-            <div className="items-center justify-center h-fit  m-[20px] ">
-
-                {
-                    names.map((item, index) => (
-                        <Cashinfo key={index} team={item.team} admin_name={item.admin_name} />
-                    ))
-                }
-
-            </div>
+        <div className='overflow-scroll h-fit mb-[20px] pb-10 deposite-page flex justify-center w-full h-screen bg-gradient-to-r from-violet-200 to-pink-200 p-5'>
+        <div className="flex flex-col mt-[150px] items-center justify-center w-full max-w-4xl space-y-6">
+          {names.map((item, index) => (
+               <AllAdmin key={index} item={item}/>
+          ))}
         </div>
+      </div>
+      
     )
 }
 
