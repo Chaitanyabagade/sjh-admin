@@ -240,7 +240,7 @@ const Loan = () => {
 
             {/* Select Field 2 */}
             <div className="mb-6">
-              <input value={getDate} onChange={(e) => setGetDate(e.target.value)} placeholder='Enter Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+              <input value={getDate} type="date" onChange={(e) => setGetDate(e.target.value)} placeholder='Enter Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
             {/* Select Field 2 */}
             <div className="mb-8">
@@ -285,7 +285,7 @@ const Loan = () => {
 
             <label className="block text-gray-700 text-sm font-semibold mb-2">Now Date</label>
             <div className="mb-6">
-              <input value={loan_Date} onChange={(e) => setLoanDate(e.target.value)} placeholder='Enter now Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+              <input value={loan_Date} type="date" onChange={(e) => setLoanDate(e.target.value)} placeholder='Enter now Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
 
             </div>
 
