@@ -84,7 +84,6 @@ const Loan = () => {
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
-  const [loanType, setLoanType] = useState("EMI");
   const [getDate, setGetDate] = useState("");
   const [duration, setDuration] = useState();
 
@@ -103,9 +102,6 @@ const Loan = () => {
       else if (duration.length === 0) {
         alert("duration is left");
       }
-      else if (loanType.length === 0) {
-        alert("loan type is left");
-      }
       else {
         setSpinner(1);
         const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/add_loan.php`;
@@ -114,7 +110,6 @@ const Loan = () => {
         fData.append('amount', amount);
         fData.append('get_date', getDate);
         fData.append('duration', duration);
-        fData.append('loan_type', loanType);
         fData.append('team', localStorage.getItem('team'));
         fData.append('mobile_no', localStorage.getItem('mobile_no'));
         fData.append('admin_name', localStorage.getItem('user_name'));
@@ -229,7 +224,7 @@ const Loan = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Loan</h2>
 
             {/* Select Field 1 */}
-            <div className="mb-4">
+            <div className="mb-6">
               <select value={name} onChange={(e) => setName(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
                 <option>User Name...</option>
                 {names.map((name, index) => (
@@ -239,25 +234,20 @@ const Loan = () => {
             </div>
 
             {/* Select Field 2 */}
-            <div className="mb-4">
+            <div className="mb-6">
               <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Enter Amount' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
 
             {/* Select Field 2 */}
-            <div className="mb-4">
+            <div className="mb-6">
               <input value={getDate} onChange={(e) => setGetDate(e.target.value)} placeholder='Enter Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
             {/* Select Field 2 */}
-            <div className="mb-4">
+            <div className="mb-8">
               <input value={duration} onChange={(e) => setDuration(e.target.value)} placeholder='Enter Duration' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
             </div>
 
-            <div className="mb-4">
-              <select value={loanType} onChange={(e) => setLoanType(e.target.value)} placeholder='Enter R-Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
-                <option>EMI</option>
-
-              </select>
-            </div>
+           
 
             {/* Submit Button */}
             <button
@@ -294,7 +284,7 @@ const Loan = () => {
             </div>
 
             <label className="block text-gray-700 text-sm font-semibold mb-2">Now Date</label>
-            <div className="mb-9">
+            <div className="mb-6">
               <input value={loan_Date} onChange={(e) => setLoanDate(e.target.value)} placeholder='Enter now Date' className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
 
             </div>
