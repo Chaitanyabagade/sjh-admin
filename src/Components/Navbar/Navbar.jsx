@@ -94,13 +94,17 @@ const Navbar = () => {
             <li className="do-not-delet w-[180px] h-0"></li>
 
             <Link onClick={()=> window.scrollTo(0, 0)} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="cashbook"> <li>CashBook</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="creditcard"> <li>Cred.C</li></Link>
             <Link onClick={()=> window.scrollTo(0, 0)} to="deposites"> <li>Deposit</li></Link>
             <Link onClick={()=> window.scrollTo(0, 0)} to="loans"> <li>Loans</li></Link>
+          
             <Link onClick={()=> window.scrollTo(0, 0)} to="penaltys"> <li>Penaltys</li></Link>
             <Link onClick={()=> window.scrollTo(0, 0)} to="expendatures"> <li>Expendt.</li></Link>
             <Link onClick={()=> window.scrollTo(0, 0)} to="remuneration"> <li>Remunart.</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="cashbook"> <li>CashBook</li></Link>
+            <Link onClick={()=> window.scrollTo(0, 0)} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
+      
+           
             <a href="logout"><li>Logout</li></a>
           
           </div>

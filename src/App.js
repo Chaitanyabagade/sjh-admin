@@ -21,6 +21,8 @@ import TransferAnotherAdmin from './Components/TransferAnotherAdmin/TransferAnot
 import Login from './Components/Login/LoginPages';
 import LoanRequest from './Components/LoanRequest/LoanRequest';
 import Cashinfo from './Components/Cashbook.jsx/Cashinfo';
+import Uploadimg from './Components/Uploadimg/Uploadimg';
+import AdminSetting from './Components/AdminSetting/AdminSetting';
 
 
 function App() {
@@ -51,6 +53,8 @@ function App() {
                <Route path="transfertoaadmin" element={<TransferAnotherAdmin/>}/>
                <Route path="loanrequests" element={<LoanRequest/>}/>
                <Route path="cashbook/cashinfo" element={<Cashinfo/>}/>
+               <Route path="uploadimg" element={<Uploadimg/>}/>
+               <Route path="adminsetting"element={<AdminSetting/>}/>
           </Routes>
           <Footer/>
        </BrowserRouter>

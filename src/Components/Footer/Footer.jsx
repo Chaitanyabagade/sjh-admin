@@ -97,8 +97,11 @@ const Footer = () => {
       <div className="container mx-auto text-center text-gray-500 mt-10">
         <p>© 2024 MoneyWise. All rights reserved.</p>
       </div>
-      <div className='w-[100px] h-[40px] float-right'>
+      <div className='w-[100px] h-[40px] float-right text-lg m-2'>
         <Link onClick={()=> window.scrollTo(0, 0)}  to="/transfertoaadmin" className='w-[100%] h-[100%]  text-center pt-2 float-right'>T-A-Admin</Link>
+      </div>
+      <div className='w-[100px] h-[40px] float-right text-lg m-2'>
+        <Link onClick={()=> window.scrollTo(0, 0)}  to="/adminsetting" className='w-[100%] h-[100%]  text-center pt-2 float-right'>Admin Name</Link>
       </div>
       <div className=''>
       { teamsnames.length-1 && teamsnames.map((item, index) => (
