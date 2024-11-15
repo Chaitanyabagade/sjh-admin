@@ -44,7 +44,7 @@ const Cashbook = () => {
 
 
     return (
-        <div className='overflow-scroll h-fit mb-[20px] pb-10 deposite-page flex justify-center w-full h-screen bg-gradient-to-r from-violet-200 to-pink-200 p-5'>
+        <div className='overflow-scroll h-fit  mb-[20px] pb-10 deposite-page flex justify-center w-full  bg-gradient-to-r from-violet-200 to-pink-200 p-5'>
         <div className="flex flex-col mt-[150px] items-center justify-center w-full max-w-4xl space-y-6">
           {names.map((item, index) => (
                <AllAdmin key={index} item={item}/>
