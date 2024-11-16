@@ -179,7 +179,7 @@ const Penalty = () => {
   </thead>
   <tbody>
     {data.map((item, index) => (
-      <tr key={index} className='hover:bg-gray-100'>
+      <tr key={index} className=' bg-white hover:bg-gray-100'>
         <td className='p-2 border border-gray-300 text-center'>{index + 1}</td>
         <td className='p-2 border border-gray-300'>{item.user_name}</td>
         <td className='p-2 border border-gray-300 text-center'>{item.Date}</td>

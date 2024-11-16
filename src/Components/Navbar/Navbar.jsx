@@ -82,10 +82,10 @@ const Navbar = () => {
           <div className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
             <li className="do-not-delet w-[180px] h-0"></li>
 
-            <Link to="/">  <li style={{ width: '150px' }}>Admin Page</li></Link>
-            <Link to="about"> <li>About</li></Link>
-            <Link to="login"> <li>Login</li></Link>
-            <Link to="contact"> <li>Contact</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="/">  <li style={{ width: '150px' }}>Admin Page</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="about"> <li>About</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="login"> <li>Login</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="contact"> <li>Contact</li></Link>
           
           </div>
            
@@ -93,16 +93,16 @@ const Navbar = () => {
           <div  className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
             <li className="do-not-delet w-[180px] h-0"></li>
 
-            <Link onClick={()=> window.scrollTo(0, 0)} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="cashbook"> <li>CashBook</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="creditcard"> <li>Cred.C</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="deposites"> <li>Deposit</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="loans"> <li>Loans</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}}to="cashbook"> <li>CashBook</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}}to="creditcard"> <li>Cred.C</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}}to="deposites"> <li>Deposit</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="loans"> <li>Loans</li></Link>
           
-            <Link onClick={()=> window.scrollTo(0, 0)} to="penaltys"> <li>Penaltys</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="expendatures"> <li>Expendt.</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="remuneration"> <li>Remunart.</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="penaltys"> <li>Penaltys</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="expendatures"> <li>Expendt.</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="remuneration"> <li>Remunart.</li></Link>
+            <Link onClick={()=>{window.scrollTo(0, 0);handleClick()}} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
       
            
             <a href="logout"><li>Logout</li></a>
