@@ -132,8 +132,10 @@ const Deposites = () => {
           <label className="block text-gray-700 text-sm font-semibold mb-2">Amount</label>
           <select value={amount} onChange={(e) => setAmount(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
             <option>Select Amt...</option>
-            <option>350</option>
-            <option>500</option>
+
+            {localStorage.getItem('team')==='PavanPutra'?<option>350</option>:''}
+            {localStorage.getItem('team')==='ShreeRam'?<option>500</option>:''}
+            {localStorage.getItem('team')==='Forever'?<option>250</option>:''}
           </select>
         </div>
   
