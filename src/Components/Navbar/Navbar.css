@@ -135,11 +135,12 @@ li:hover{
    
    
     li{
-     height:50px;
+     height:40px;
      margin-left: 20px;  
      margin-top:10px;
      margin-bottom: auto;
-     text-align: left;;
+     text-align: left;
+    
     }
     .SidebarOut{
         width:240px;

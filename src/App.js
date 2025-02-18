@@ -23,6 +23,7 @@ import LoanRequest from './Components/LoanRequest/LoanRequest';
 import Cashinfo from './Components/Cashbook.jsx/Cashinfo';
 import Uploadimg from './Components/Uploadimg/Uploadimg';
 import AdminSetting from './Components/AdminSetting/AdminSetting';
+import Sip from './Components/Sip/Sip';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                <Route path="cashbook/cashinfo" element={<Cashinfo/>}/>
                <Route path="uploadimg" element={<Uploadimg/>}/>
                <Route path="adminsetting"element={<AdminSetting/>}/>
+               <Route path="sip" element={<Sip/>}/>
           </Routes>
           <Footer/>
        </BrowserRouter>

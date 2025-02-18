@@ -108,8 +108,20 @@ const getStyle = (property) => {
   return getComputedStyle(document.documentElement).getPropertyValue(property);
 }
 
+const [sipdata,setSipData]=useState([]);
+const getSipData = ()=>{
+   
+  const url = `${process.env.REACT_APP_domain}/sjh-team-api/sips.php`;
+  let fData = new FormData();
+  fData.append('team', localStorage.getItem('team'));
+  axios.post(url, fData).then((response) => {
+    const APIResponse = response.data;// This is response data from AXIOS
+    setSipData(APIResponse);
+  }).catch(error => alert(error, " Try Again...!"));
 
+}
 useEffect(()=>{
+  getSipData();
   getTotalBalance();
   getTotalDeposite();
   getTotalIntrest();
@@ -147,6 +159,17 @@ useEffect(()=>{
         </h3>
       </div>
     ))}
+    {
+    sipdata.map((item, index) => (
+     <div key={1} className="p-5  bg-white rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2 text-center w-full ">{"SIP "+index+1}</h2> 
+        <h2 className={`text-xl font-bold ${item.positive === false ? 'text-red-500' : 'text-green-500'}`}>SIP Invest  Rs.{item.sip_invest}</h2>
+        <h3 className={`text-xl font-bold ${item.positive === false ? 'text-red-500' : 'text-green-500'}`}> 
+         SIP Value Rs. {item.sip_value}
+        </h3>
+      </div>
+    ))
+  }
   </div>
 
   {localStorage.getItem('team') === 'PavanPutra' && (
@@ -158,7 +181,7 @@ useEffect(()=>{
             "Aug−23", "Sep−23", "Oct−23", "Nov−23", "Dec−23",
             "Jan−24", "Feb−24", "Mar−24", "Apr−24", "May−24",
             "Jun−24", "Jul−24", "Aug−24", "Sep−24", "Oct−24",
-            "Nov−23", "Dec−23"
+            "Nov−24", "Dec−24","Jan-25" ,"Feb-25"
           ],
           datasets: [
             {
@@ -167,7 +190,7 @@ useEffect(()=>{
               borderColor: "#667EEA",
               pointBackgroundColor: "#667EEA",
               pointBorderColor: "#ffffff",
-              data: [300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3950, 4350, 4650,5000,5350],
+              data: [300, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000, 3300, 3600, 3950, 4350, 4650,5000,5350,5700,6050],
             },
             {
               label: "Valuation",
@@ -175,7 +198,7 @@ useEffect(()=>{
               borderColor: "#48BB78",
               pointBackgroundColor: "#48BB78",
               pointBorderColor: "#ffffff",
-              data: [300, 700, 1100, 1500, 1800, 2200, 2600, 3000, 3400, 3700, 4100, 4400, 4750, 5000, 5161, 5600 , 6100],
+              data: [300, 700, 1100, 1500, 1800, 2200, 2600, 3000, 3400, 3700, 4100, 4400, 4750, 5000, 5161, 5600 , 6100 , 6300, 6747],
             },
           ],
         }}
