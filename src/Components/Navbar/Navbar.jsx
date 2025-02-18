@@ -34,7 +34,7 @@ const Navbar = () => {
     window.location.reload();
   }
 
-  const [compatible,setCompatible]=useState(1);
+  const [compatible, setCompatible] = useState(1);
 
   let navigate = useNavigate();
   useEffect(() => {
@@ -48,10 +48,10 @@ const Navbar = () => {
       setAuth(auth);
     }
     // check device compatiblilty
-    if (typeof(Storage) === "undefined") { 
-       setCompatible(0);
-    } 
-   
+    if (typeof (Storage) === "undefined") {
+      setCompatible(0);
+    }
+
 
   }, [])
 
@@ -62,13 +62,13 @@ const Navbar = () => {
 
 
     <div className='NavBox bg-black fixed justify-center z-10 '>
-       
-       <div className={compatible?' hidden ':' z-100 fixed w-[100%] overflow-scroll h-fit bg-red-600 mx-auto text-center'}>
+
+      <div className={compatible ? ' hidden ' : ' z-100 fixed w-[100%] overflow-scroll h-fit bg-red-600 mx-auto text-center'}>
         <br />
-           Your Browser is Not Support this web app please update browser <br /><br />
-           <a className='w-fit h-fit pl-5 pr-5 pt-1 pb-1 bg-green-500 mt-[500px] rounded-full' href="https://play.google.com/store/apps/details?id=com.android.chrome&pcampaignid=web_share">Update</a>
-           <br /><br />
-       </div>
+        Your Browser is Not Support this web app please update browser <br /><br />
+        <a className='w-fit h-fit pl-5 pr-5 pt-1 pb-1 bg-green-500 mt-[500px] rounded-full' href="https://play.google.com/store/apps/details?id=com.android.chrome&pcampaignid=web_share">Update</a>
+        <br /><br />
+      </div>
       <button onClick={handleClick} className="sideBarButton">
         <div className={style11}></div>
         <div className={style12}></div>
@@ -86,35 +86,34 @@ const Navbar = () => {
             <Link to="about"> <li>About</li></Link>
             <Link to="login"> <li>Login</li></Link>
             <Link to="contact"> <li>Contact</li></Link>
-          
+
           </div>
-           
+
         ) : (
-          <div  className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
+          <div className={!style ? `w-fit h-fit ml-[-200px]` : `w-fit h-fit bg-black fixed`}>
             <li className="do-not-delet w-fit h-0"></li>
-          
-            <Link onClick={()=> window.scrollTo(0, 0)} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="cashbook"> <li>CashBook</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="creditcard"> <li>Cred.C</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="deposites"> <li>Deposit</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="loans"> <li>Loans</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="sip"> <li>SIP</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="invest"> <li>invest</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="penaltys"> <li>Penaltys</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="expendatures"> <li>Expendt.</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="remuneration"> <li>Remunart.</li></Link>
-            <Link onClick={()=> window.scrollTo(0, 0)} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
-           
+
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="dashboard"><li style={{ color: 'orange', width: '180px' }}>{localStorage.getItem('team')}</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="cashbook"> <li>CashBook</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="creditcard"> <li>Cred.C</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="deposites"> <li>Deposit</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="loans"> <li>Loans</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="sip"> <li>SIP</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="penaltys"> <li>Penaltys</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="expendatures"> <li>Expendt.</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="remuneration"> <li>Remunart.</li></Link>
+            <Link onClick={() => { window.scrollTo(0, 0); handleClick() }} to="sign_up"> <li style={{ width: '180px' }}> Create user</li></Link>
+
             <a href="logout"><li>Logout</li></a>
-          
+
           </div>
         )}
-        
-        
+
+
 
 
       </div>
-     
+
 
 
     </div>
