@@ -1,0 +1,17 @@
+.homepage{
+    padding-top: 80px;
+    border:2px solid rgb(9, 8, 8);
+}
+.solegon{
+  margin-top: 10px;
+  width:300px;
+  height:20%;
+  background-color: rgba(250, 245, 245, 0.3);
+  font-size:300%;
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:15px;
+  border-radius: 20px;
+  border:3px solid orange;
+}
