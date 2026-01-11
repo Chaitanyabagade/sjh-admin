@@ -4,7 +4,7 @@ import { CChart } from '@coreui/react-chartjs';
 import axios  from 'axios';
 const Dashboard = () => {
 
-
+ const [totalbalancetoyou,setTotalbalancetoyou]=useState(0);
  const [balanceAtBank,setBalanceBank]=useState(0);
  const [totalDeposite,setTotalDeposite]=useState(0);
  const [totalIntrest,SetTotalInters]=useState(0);
@@ -15,6 +15,17 @@ const Dashboard = () => {
  const [numberOfMembersInTeam,setNumberOfMemberInTeam]=useState(0);
  const [totalRemunaration,setTotalRemunaration]=useState(0);
 
+  function getTotalCashToyou() {
+        const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/admin/gettotalcashtoyou.php`;
+        let fData2 = new FormData();
+        fData2.append('admin_name',window.localStorage.getItem("user_name"));
+        axios.post(url2, fData2).then((response) => {
+            const APIResponse = response.data;// This is response data from AXIOS
+            setTotalbalancetoyou(APIResponse); // Only Response from API is set in state
+        }).catch(error => alert(error, " Try Again...!"));
+      
+    }
+  
  function getTotaltotalRemunaration(){
   const url2=`${process.env.REACT_APP_domain}/sjh-team-api/getTotalRemuneration.php`;
   let fData2= new FormData();
@@ -131,6 +142,7 @@ useEffect(()=>{
   getTotalGetedLoan();
   getTotalNumberOfMember();
   getTotaltotalRemunaration();
+  getTotalCashToyou();
 },[]);
 
   return (
@@ -138,7 +150,8 @@ useEffect(()=>{
   <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     
     {[
-      { title: "Balance At Bank", value: balanceAtBank, positive: balanceAtBank >= 0 },
+      { title: "Total Balance", value: balanceAtBank, positive: balanceAtBank >= 0 },
+      { title: "All Team Balance In your bank", value: totalbalancetoyou, positive: totalbalancetoyou >= 0 },
       { title: "Total Deposit", value: totalDeposite },
       { title: "Total Interest", value: totalIntrest },
       { title: "Total Penalty", value: totalPenalty },
