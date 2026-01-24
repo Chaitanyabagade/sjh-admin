@@ -140,10 +140,10 @@ const Deposites = () => {
             <select value={amount} onChange={(e) => setAmount(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
               {dayOfMonth > 15 ?
                <>
-                  <option>Select Amt. Extra- 50Rs Penalty</option>
-                  {localStorage.getItem('team') === 'PavanPutra' ? <option>450</option> : ''}
-                  {localStorage.getItem('team') === 'ShreeRam' ? <option>550</option> : ''}
-                  {localStorage.getItem('team') === 'Forever' ? <option>300</option> : ''}
+                 <option>Select Amt...</option>
+                  {localStorage.getItem('team') === 'PavanPutra' ? <option>400</option> : ''}
+                  {localStorage.getItem('team') === 'ShreeRam' ? <option>500</option> : ''}
+                  {localStorage.getItem('team') === 'Forever' ? <option>250</option> : ''}
                 </>
                 : <>
                   <option>Select Amt...</option>
