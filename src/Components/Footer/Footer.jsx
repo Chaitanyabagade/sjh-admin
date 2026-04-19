@@ -303,46 +303,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Newsletter */}
-            <div>
-              <div className="footer-col-title">Stay Updated</div>
-              <p className="footer-newsletter-desc">
-                Subscribe to get the latest updates on loan rates and financial tips.
-              </p>
-              <div className="footer-email-row">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="footer-email-input"
-                />
-                <button className="footer-subscribe-btn">Subscribe</button>
-              </div>
-            </div>
-
-            {/* Download App */}
-            <div>
-              <div className="footer-col-title">Get the App</div>
-              <p className="footer-app-desc">
-                Manage your loans on the go with our mobile app.
-              </p>
-              <div className="footer-app-links">
-                <a href="#" className="footer-app-link">
-                  <SiGoogleplay size={18} />
-                  <span>
-                    Google Play
-                    <span className="footer-app-link-sub">Android</span>
-                  </span>
-                </a>
-                <a href="#" className="footer-app-link">
-                  <SiAppstore size={18} />
-                  <span>
-                    App Store
-                    <span className="footer-app-link-sub">iOS</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-
           </div>
 
           {/* ── Team Switcher ── */}
