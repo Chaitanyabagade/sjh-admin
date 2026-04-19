@@ -141,7 +141,7 @@ const Deposites = () => {
               {dayOfMonth > 15 ?
                <>
                  <option>Select Amt...</option>
-                  {localStorage.getItem('team') === 'PavanPutra' ? <option>400</option> : ''}
+                  {localStorage.getItem('team') === 'PavanPutra' ? <option>500</option> : ''}
                   {localStorage.getItem('team') === 'ShreeRam' ? <option>500</option> : ''}
                   {localStorage.getItem('team') === 'Forever' ? <option>250</option> : ''}
                 </>
