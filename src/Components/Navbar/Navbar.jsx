@@ -339,7 +339,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to={auth ? "dashboard" : "/"} className="topbar-logo">
           <img src={Logo} alt="logo" />
-          <span className="topbar-logo-name">FinTrack</span>
+          <span className="topbar-logo-name">{teamName}</span>
         </Link>
 
         {/* Desktop inline nav */}
