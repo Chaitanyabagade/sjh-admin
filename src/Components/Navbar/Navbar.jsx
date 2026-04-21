@@ -232,7 +232,7 @@ const Navbar = () => {
           padding: 10px 20px;
           color: rgba(245,245,240,0.7);
           text-decoration: none;
-          font-size: 0.87rem; font-weight: 600;
+          font-size: 0.99rem; font-weight: 600;
           letter-spacing: 0.02em;
           transition: color 0.2s, background 0.2s, padding-left 0.2s;
           border-left: 2px solid transparent;
