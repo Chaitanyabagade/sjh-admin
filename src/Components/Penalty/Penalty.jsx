@@ -1,82 +1,57 @@
 import React, { useEffect, useState } from 'react'
-import './penalty.css'
 import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
+
 const Penalty = () => {
   const [data, setData] = useState([]);
   const [spinner, setSpinner] = useState(0);
-
   const [names, setNames] = useState([]);
-
-  function getTotalNames() {
-
-    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
-    let fData2 = new FormData();
-    fData2.append('name', localStorage.getItem('team'));
-
-    axios.post(url2, fData2).then((response) => {
-      const APIResponse = response.data;// This is response data from AXIOS
-      setNames(APIResponse); // Only Response from API is set in state
-    }).catch(error => alert(error, " Try Again...!"));
-    console.log(names);
-
-  }
-
-
   const [penalty_amt, setPen_amt] = useState(0);
-  function getTotalpenalty() {
-
-    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalPenalty.php`;
-    let fData2 = new FormData();
-    fData2.append('name', localStorage.getItem('team'));
-
-    axios.post(url2, fData2).then((response) => {
-      const APIResponse = response.data;// This is response data from AXIOS
-      setPen_amt(APIResponse); // Only Response from API is set in state
-    }).catch(error => alert(error, " Try Again...!"));
-
-  }
-  function getData() {
-
-    const url = `${process.env.REACT_APP_domain}/sjh-team-api/penalty.php`;
-    let fData = new FormData();
-    fData.append('name', localStorage.getItem('team'));
-
-    axios.post(url, fData).then((response) => {
-
-      const APIResponse = response.data;// This is response data from AXIOS
-      setData(APIResponse); // Only Response from API is set in state
-    }).catch(error => alert(error, " Try Again...!"));
-
-
-    // get total deposite
-
-
-  }
-
-
-
   const [name, setName] = useState("");
   const [amount, setAmount] = useState();
   const [note, setNote] = useState("");
   const [date, setDate] = useState("");
 
+  /* ── all original business logic untouched ── */
+  function getTotalNames() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+    axios.post(url2, fData2).then((response) => {
+      setNames(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+    console.log(names);
+  }
+
+  function getTotalpenalty() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalPenalty.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+    axios.post(url2, fData2).then((response) => {
+      setPen_amt(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
+
+  function getData() {
+    const url = `${process.env.REACT_APP_domain}/sjh-team-api/penalty.php`;
+    let fData = new FormData();
+    fData.append('name', localStorage.getItem('team'));
+    axios.post(url, fData).then((response) => {
+      setData(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
 
   const handleAddPenalty = () => {
     console.log(name, amount);
     if (name.length === 0) {
       alert("User Name is left");
-    }
-    else if (amount<= 0) {
+    } else if (amount <= 0) {
       alert("Amount is left");
-    }
-    else if (note.length === 0) {
+    } else if (note.length === 0) {
       alert("note is left");
-    }
-    else if (date.length === 0) {
+    } else if (date.length === 0) {
       alert("date is left");
-    }
-    else {
+    } else {
       setSpinner(1);
       const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/add_penalty.php`;
       let fData = new FormData();
@@ -91,114 +66,355 @@ const Penalty = () => {
         setSpinner(0);
         if (result.status == 200) {
           alert("Penaly added sucessfuly...");
-        }
-        else {
+        } else {
           alert("Error to add penalty...");
         }
         getData();
         getTotalpenalty();
-      })
-        .catch(error => alert(error, " Try Again...!"));
-
+      }).catch(error => alert(error, " Try Again...!"));
     }
-
-
-  }
-
+  };
 
   useEffect(() => {
     getData();
     getTotalpenalty();
     getTotalNames();
-  }, [])
-
-
+  }, []);
 
   return (
-    <div className=' pt-[100px] deposite-page bg-gradient-to-r from-blue-200 to-green-300 '>
-      <div role="status" className={`${spinner ? "block" : "hidden"} absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2`}>
-        <svg aria-hidden="ture" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-900" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
-        <span className="sr-only">Loading...</span>
-      </div>
-      <div className="flex items-center m-[20px] justify-center h-fit  ">
-        <div className=" text-xl bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add Penalty</h2>
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
 
-          {/* Select Field 1 */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">User Name</label>
-            <select value={name} onChange={(e) => setName(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none">
-              <option>User Name...</option>
-              {names.map((name, index) => (
-                <option >{name.user_name}</option>
-              ))}
-            </select>
+        .pen-root {
+          min-height: 100vh;
+          background: #0a0a0a;
+          padding: 90px 20px 60px;
+          box-sizing: border-box;
+          font-family: 'Syne', sans-serif;
+        }
+        .pen-inner {
+          max-width: 860px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        /* spinner */
+        .pen-spinner-overlay {
+          position: fixed; inset: 0; z-index: 999;
+          background: rgba(0,0,0,0.65);
+          display: flex; align-items: center; justify-content: center;
+        }
+        .pen-spinner {
+          width: 44px; height: 44px;
+          border: 3px solid rgba(248,113,113,0.15);
+          border-top-color: #f87171;
+          border-radius: 50%;
+          animation: pen-spin 0.75s linear infinite;
+        }
+        @keyframes pen-spin { to { transform: rotate(360deg); } }
+
+        /* page header */
+        .pen-header {
+          padding-bottom: 24px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .pen-header-label {
+          font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+          text-transform: uppercase; color: rgba(245,245,240,0.28);
+          font-family: 'DM Mono', monospace; margin-bottom: 6px;
+        }
+        .pen-header-row {
+          display: flex; align-items: center;
+          justify-content: space-between; flex-wrap: wrap; gap: 12px;
+        }
+        .pen-header-title {
+          font-size: clamp(22px,4vw,30px); font-weight: 800;
+          color: #f5f5f0; letter-spacing: -0.02em;
+        }
+        .pen-header-title span { color: #f87171; }
+        .pen-total-badge {
+          display: flex; flex-direction: column; align-items: flex-end;
+          background: rgba(248,113,113,0.08);
+          border: 1px solid rgba(248,113,113,0.2);
+          border-radius: 12px; padding: 10px 18px;
+        }
+        .pen-total-badge-label {
+          font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em;
+          text-transform: uppercase; color: rgba(248,113,113,0.6);
+          font-family: 'DM Mono', monospace; margin-bottom: 3px;
+        }
+        .pen-total-badge-value {
+          font-size: 19px; font-weight: 800;
+          font-family: 'DM Mono', monospace; color: #f87171;
+          letter-spacing: -0.01em;
+        }
+
+        /* form card */
+        .pen-form-card {
+          background: #111;
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 16px;
+          padding: 26px 24px;
+        }
+        .pen-form-title {
+          font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+          text-transform: uppercase; color: rgba(245,245,240,0.3);
+          font-family: 'DM Mono', monospace; margin-bottom: 20px;
+        }
+
+        /* 2-col grid for form fields */
+        .pen-form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+          margin-bottom: 14px;
+        }
+        @media (max-width: 560px) {
+          .pen-form-grid { grid-template-columns: 1fr; }
+        }
+        .pen-field-full { grid-column: 1 / -1; }
+
+        .pen-field { display: flex; flex-direction: column; }
+        .pen-label {
+          font-size: 10px; font-weight: 700; letter-spacing: 0.13em;
+          text-transform: uppercase; color: rgba(245,245,240,0.32);
+          font-family: 'DM Mono', monospace; margin-bottom: 7px;
+        }
+        .pen-input, .pen-select {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 9px; padding: 10px 13px;
+          font-size: 13.5px; font-weight: 600;
+          color: #f5f5f0; font-family: 'Syne', sans-serif;
+          outline: none; box-sizing: border-box;
+          transition: border-color 0.2s; width: 100%;
+        }
+        .pen-input:focus, .pen-select:focus { border-color: rgba(248,113,113,0.5); }
+        .pen-input::placeholder { color: rgba(245,245,240,0.2); }
+        .pen-select {
+          appearance: none; cursor: pointer;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(245,245,240,0.3)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat; background-position: right 13px center;
+        }
+        .pen-select option { background: #1a1a1a; color: #f5f5f0; }
+
+        .pen-submit-btn {
+          width: 100%; display: flex; align-items: center; justify-content: center;
+          gap: 8px; padding: 12px 20px; border-radius: 9px; border: none;
+          background: #f87171; color: #2d0000; font-size: 12px; font-weight: 800;
+          font-family: 'Syne', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+          cursor: pointer; transition: background 0.2s, transform 0.15s;
+        }
+        .pen-submit-btn:hover { background: #ef4444; transform: translateY(-1px); }
+        .pen-submit-btn:active { transform: translateY(0); }
+
+        /* section label */
+        .pen-section-label {
+          font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
+          text-transform: uppercase; color: rgba(245,245,240,0.25);
+          font-family: 'DM Mono', monospace;
+        }
+
+        /* table */
+        .pen-table-wrap {
+          background: #111;
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 14px; overflow: hidden; overflow-x: auto;
+        }
+        .pen-table {
+          width: 100%; border-collapse: collapse;
+          min-width: 520px; font-family: 'Syne', sans-serif;
+        }
+        .pen-table thead tr {
+          background: #181818;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .pen-table th {
+          padding: 12px 16px; font-size: 10px; font-weight: 700;
+          letter-spacing: 0.16em; text-transform: uppercase;
+          color: rgba(245,245,240,0.28); font-family: 'DM Mono', monospace;
+          text-align: left; white-space: nowrap;
+        }
+        .pen-table th.right { text-align: right; }
+        .pen-table th.center { text-align: center; }
+
+        .pen-table tbody tr {
+          border-bottom: 1px solid rgba(255,255,255,0.04);
+          transition: background 0.15s;
+        }
+        .pen-table tbody tr:last-child { border-bottom: none; }
+        .pen-table tbody tr:hover { background: rgba(248,113,113,0.04); }
+
+        .pen-table td {
+          padding: 12px 16px; font-size: 13px;
+          color: rgba(245,245,240,0.65); vertical-align: middle;
+        }
+        .pen-table td.center { text-align: center; }
+        .pen-table td.right { text-align: right; }
+
+        .pen-sr {
+          font-family: 'DM Mono', monospace; font-size: 11px;
+          color: rgba(245,245,240,0.22);
+        }
+        .pen-user { font-weight: 700; color: #f5f5f0; }
+        .pen-date {
+          font-family: 'DM Mono', monospace; font-size: 11.5px;
+          color: rgba(245,245,240,0.35); white-space: nowrap;
+        }
+        .pen-note { color: rgba(245,245,240,0.5); font-size: 12.5px; }
+        .pen-amount {
+          font-family: 'DM Mono', monospace; font-size: 13.5px;
+          font-weight: 700; color: #f87171;
+        }
+
+        /* tfoot */
+        .pen-table tfoot tr {
+          background: #181818;
+          border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .pen-table tfoot td { padding: 13px 16px; }
+        .pen-foot-label {
+          font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+          text-transform: uppercase; font-family: 'DM Mono', monospace;
+          color: rgba(245,245,240,0.28);
+        }
+        .pen-foot-total {
+          font-size: 17px; font-weight: 800;
+          font-family: 'DM Mono', monospace; color: #f87171;
+          text-align: right;
+        }
+
+        /* empty state */
+        .pen-empty {
+          padding: 48px 24px; text-align: center;
+          color: rgba(245,245,240,0.18); font-size: 13px;
+          font-family: 'DM Mono', monospace; letter-spacing: 0.08em;
+        }
+      `}</style>
+
+      {spinner ? <div className="pen-spinner-overlay"><div className="pen-spinner" /></div> : null}
+
+      <div className="pen-root">
+        <div className="pen-inner">
+
+          {/* ── Page header ── */}
+          <div className="pen-header">
+            <div className="pen-header-label">Finance</div>
+            <div className="pen-header-row">
+              <div className="pen-header-title">Member <span>Penalties</span></div>
+              <div className="pen-total-badge">
+                <div className="pen-total-badge-label">Total Penalties</div>
+                <div className="pen-total-badge-value">
+                  ₹ {Number(penalty_amt).toLocaleString('en-IN')}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Select Field 2 */}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">Amount</label>
-            <input placeholder='Enter Amount..' value={amount} onChange={(e) => setAmount(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
+          {/* ── Add Penalty form ── */}
+          <div className="pen-form-card">
+            <div className="pen-form-title">Add New Penalty</div>
 
+            <div className="pen-form-grid">
+              {/* User Name */}
+              <div className="pen-field">
+                <label className="pen-label">User Name</label>
+                <select value={name} onChange={(e) => setName(e.target.value)} className="pen-select">
+                  <option>User Name...</option>
+                  {names.map((n, index) => (
+                    <option key={index}>{n.user_name}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Amount */}
+              <div className="pen-field">
+                <label className="pen-label">Amount</label>
+                <input
+                  placeholder="Enter amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  className="pen-input"
+                />
+              </div>
+
+              {/* Date */}
+              <div className="pen-field">
+                <label className="pen-label">Date</label>
+                <input
+                  placeholder="Enter date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="pen-input"
+                />
+              </div>
+
+              {/* Note */}
+              <div className="pen-field">
+                <label className="pen-label">Note</label>
+                <input
+                  placeholder="Enter note"
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
+                  className="pen-input"
+                />
+              </div>
+            </div>
+
+            <button onClick={handleAddPenalty} className="pen-submit-btn">
+              <FaPaperPlane size={12} />
+              Submit Penalty
+            </button>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">Date</label>
-            <input placeholder='Enter Date..' value={date} onChange={(e) => setDate(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
 
+          {/* ── Table ── */}
+          <div className="pen-section-label">All User Penalties</div>
+          <div className="pen-table-wrap">
+            <table className="pen-table">
+              <thead>
+                <tr>
+                  <th className="center">#</th>
+                  <th>User Name</th>
+                  <th>Date</th>
+                  <th>Note</th>
+                  <th className="right">Penalty</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.length === 0 ? (
+                  <tr>
+                    <td colSpan="5">
+                      <div className="pen-empty">No penalty records found</div>
+                    </td>
+                  </tr>
+                ) : (
+                  data.map((item, index) => (
+                    <tr key={index}>
+                      <td className="center"><span className="pen-sr">{index + 1}</span></td>
+                      <td><span className="pen-user">{item.user_name}</span></td>
+                      <td><span className="pen-date">{item.Date}</span></td>
+                      <td><span className="pen-note">{item.note}</span></td>
+                      <td className="right"><span className="pen-amount">₹ {Number(item.penalty).toLocaleString('en-IN')}</span></td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="4"><span className="pen-foot-label">Total Penalties</span></td>
+                  <td><span className="pen-foot-total">₹ {Number(penalty_amt).toLocaleString('en-IN')}</span></td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2">Note</label>
-            <input placeholder='Enter Note..' value={note} onChange={(e) => setNote(e.target.value)} className="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none" />
 
-          </div>
-
-          {/* Submit Button */}
-          <button
-            onClick={handleAddPenalty}
-            className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center hover:bg-blue-600 transition duration-300"
-          >
-            <FaPaperPlane className="mr-2" />
-            Submit
-          </button>
         </div>
       </div>
+    </>
+  );
+};
 
-
-      <h2 className='mt-9 text-3xl text-center w-[300px] rounded-full text-green-700 font-bold p-2 ml-auto mr-auto'> All Users Penalty </h2>
-
-      <div className='overflow-x-auto mt-5'>
-      <table className='min-w-full bg-black text-[15px] sm:text-2xl md:text-3xl lg:text-4xl'>
-  <thead>
-    <tr className='border-2 border-gray-300 bg-orange-500'>
-      <th className='p-2 border border-gray-300 text-center'>Sr.No.</th>
-      <th className='p-2 border border-gray-300 text-center'>User Name</th>
-      <th className='p-2 border border-gray-300 text-center'>Date</th>
-      <th className='p-2 border border-gray-300 text-center'>Note</th>
-      <th className='p-2 border border-gray-300 text-center'>Penalty</th>
-    </tr>
-  </thead>
-  <tbody>
-    {data.map((item, index) => (
-      <tr key={index} className=' bg-white hover:bg-gray-100'>
-        <td className='p-2 border border-gray-300 text-center'>{index + 1}</td>
-        <td className='p-2 border border-gray-300'>{item.user_name}</td>
-        <td className='p-2 border border-gray-300 text-center'>{item.Date}</td>
-        <td className='p-2 border border-gray-300'>{item.note}</td>
-        <td className='p-2 border border-gray-300 text-right pr-2'>{item.penalty}</td>
-      </tr>
-    ))}
-    <tr className='bg-orange-500'>
-      <td className='p-2 border border-gray-300 text-center' colSpan="4">Total</td>
-      <td className='p-2 border border-gray-300 text-right pr-2'>{penalty_amt}</td>
-    </tr>
-  </tbody>
-</table>
-
-  </div>
-
-    </div>
-
-  )
-}
-
-export default Penalty
+export default Penalty;
