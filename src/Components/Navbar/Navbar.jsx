@@ -5,7 +5,6 @@ import Logo from "../../assets/logo.jpg";
 const navLinks = [
   { to: "dashboard", label: "Dashboard", icon: "⬡" },
   { to: "cashbook", label: "Cash Book", icon: "◈" },
-  { to: "creditcard", label: "Credit Card", icon: "◉" },
   { to: "deposites", label: "Deposits", icon: "◆" },
   { to: "loans", label: "Loans", icon: "◇" },
   { to: "sip", label: "SIP", icon: "◎" },
