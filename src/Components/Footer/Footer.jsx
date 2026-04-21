@@ -41,7 +41,7 @@ const Footer = () => {
           border-top: 1px solid rgba(255,255,255,0.07);
           font-family: 'Syne', sans-serif;
           color: rgba(245,245,240,0.55);
-          padding: 56px 24px 0;
+          padding: 0px 24px 0;
           margin-top: 64px;
         }
 
