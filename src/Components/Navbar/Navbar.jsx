@@ -279,6 +279,7 @@ const Navbar = () => {
             scrollbar-width: none;
             flex: 1;
             margin: 0 8px;
+          
           }
           .desktop-nav::-webkit-scrollbar { display: none; }
 
@@ -286,7 +287,7 @@ const Navbar = () => {
             border-left: none;
             border-bottom: 2px solid transparent;
             padding: 6px 12px;
-            font-size: 0.78rem;
+            font-size: 0.99rem;
             white-space: nowrap;
             color: var(--text-muted);
             border-radius: 6px;
