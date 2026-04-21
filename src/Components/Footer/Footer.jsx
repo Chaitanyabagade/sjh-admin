@@ -42,7 +42,7 @@ const Footer = () => {
           font-family: 'Syne', sans-serif;
           color: rgba(245,245,240,0.55);
           padding: 0px 24px 0;
-          margin-top: 64px;
+          margin-top: 6px;
         }
 
         .footer-inner {
