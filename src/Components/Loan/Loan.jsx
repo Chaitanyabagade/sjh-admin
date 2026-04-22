@@ -1,497 +1,521 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { FaPaperPlane } from 'react-icons/fa';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const LoanRequest = () => {
+const Loan = () => {
   const [data, setData] = useState([]);
   const [spinner, setSpinner] = useState(0);
-  const [loanReqests_amt, set_req_amt] = useState(0);
   const [names, setNames] = useState([]);
-  const [status, setStatus] = useState("Pending..");
-  const [reply, setReply] = useState("");
-  const [username, setUserName] = useState("");
-  const [requestId, setRequestId] = useState("");
-  const [activeId, setActiveId] = useState(null);
+  const [total_intrest_amt, setTotal_intrest_amt] = useState(0);
+  const [loan_amt_returned, setloan_amt_returned] = useState(0);
+  const [loan_amt, setloan_amt] = useState(0);
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState();
+  const [getDate, setGetDate] = useState("");
+  const [duration, setDuration] = useState();
+  const [id, setId] = useState();
+  const [name2, setName2] = useState("");
+  const [loan_Date, setLoanDate] = useState("");
+  const [Actionids, setActionid] = useState(null);
 
-  function getTotalloanReqests() {
-    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalloanRequests.php`;
-    let fData2 = new FormData();
-    fData2.append('name', localStorage.getItem('team'));
-    axios.post(url2, fData2)
-      .then((response) => set_req_amt(response.data))
-      .catch(error => alert(error, " Try Again...!"));
-  }
-
-  function getData() {
-    const url = `${process.env.REACT_APP_domain}/sjh-team-api/loanRequests.php`;
-    let fData = new FormData();
-    fData.append('name', localStorage.getItem('team'));
-    axios.post(url, fData)
-      .then((response) => setData(response.data))
-      .catch(error => alert(error, " Try Again...!"));
-  }
-
+  /* ── all original business logic untouched ── */
   function getTotalNames() {
     const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/allUserName.php`;
     let fData2 = new FormData();
     fData2.append('name', localStorage.getItem('team'));
-    axios.post(url2, fData2)
-      .then((response) => setNames(response.data))
-      .catch(error => alert(error, " Try Again...!"));
+    axios.post(url2, fData2).then((response) => {
+      setNames(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
   }
 
-  const handleEditLoanRequests = () => {
-    if (username.length === 0) return alert("User Name is left");
-    if (!requestId || requestId === 'Select ID...') return alert("Request ID is left");
-    if (status.length === 0) return alert("Status is left");
-    if (reply.length === 0) return alert("Reply is left");
+  function getTotalIntrest() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalIntrest.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+    axios.post(url2, fData2).then((response) => {
+      setTotal_intrest_amt(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
 
-    if (confirm(`Confirm to edit loan request of user => ${username} and request id => ${requestId}`)) {
-      setSpinner(1);
-      const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/edit_Request_status.php`;
-      let fData = new FormData();
-      fData.append('username', username);
-      fData.append('status', status);
-      fData.append('id', requestId);
-      fData.append('reply', reply);
-      fData.append('team', localStorage.getItem('team'));
+  function getTotalLoanReturned() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoanReturned.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+    axios.post(url2, fData2).then((response) => {
+      setloan_amt_returned(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
 
-      axios.post(url, fData)
-        .then((result) => {
-          getData();
+  function getTotalLoan() {
+    const url2 = `${process.env.REACT_APP_domain}/sjh-team-api/getTotalLoan.php`;
+    let fData2 = new FormData();
+    fData2.append('name', localStorage.getItem('team'));
+    axios.post(url2, fData2).then((response) => {
+      setloan_amt(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
+
+  function getData() {
+    const url = `${process.env.REACT_APP_domain}/sjh-team-api/user_loan.php`;
+    let fData = new FormData();
+    fData.append('name', localStorage.getItem('team'));
+    axios.post(url, fData).then((response) => {
+      setData(response.data);
+      console.log(response.data);
+    }).catch(error => alert(error, " Try Again...!"));
+  }
+
+  const handleAddLoan = () => {
+    if (confirm(`Conferm to Add loan of user => ${name} and duration => ${duration}`)) {
+      if (name.length === 0) {
+        alert("User Name is left");
+      } else if (amount <= 0) {
+        alert("Amount is not in negative or zero");
+      } else if (getDate.length === 0) {
+        alert("get date is left");
+      } else if (duration.length === 0) {
+        alert("duration is left");
+      } else {
+        setSpinner(1);
+        const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/add_loan.php`;
+        let fData = new FormData();
+        fData.append('name', name);
+        fData.append('amount', amount);
+        fData.append('get_date', getDate);
+        fData.append('duration', duration);
+        fData.append('team', localStorage.getItem('team'));
+        fData.append('mobile_no', localStorage.getItem('mobile_no'));
+        fData.append('admin_name', localStorage.getItem('user_name'));
+        axios.post(url, fData).then((result) => {
+          if (result.status == 200) {
+            alert("sucessfuly add..");
+            getData(); getTotalLoan(); getTotalLoanReturned(); getTotalIntrest();
+          } else { alert(result.data); }
           setSpinner(0);
-          setActiveId(null);
-          if (result.status == 200) alert("Successfully updated!");
-          else alert(result.data);
-        })
-        .catch(error => alert(error, " Try Again...!"));
+        }).catch(error => alert(error, " Try Again...!"));
+      }
     }
   };
 
-  const handleSelectRow = (item) => {
-    setActiveId(item.id);
-    setRequestId(item.id);
-    setUserName(item.user_name);
-    setStatus(item.status);
-    setReply(item.reply || "");
+  const handleEditLoan = () => {
+    if (name2.length === 0) { alert("User Name is left"); }
+    else if (id.length === 0) { alert("loan id is left"); }
+    else if (id != Actionids) { alert("Action id is not same as id"); setActionid(null); }
+    else if (loan_Date.length === 0) { alert("now date is left"); }
+    else {
+      if (confirm(`Conferm to Edit loan of user => ${name2} and loan id => ${id}`)) {
+        setSpinner(1);
+        const url = `${process.env.REACT_APP_domain}/sjh-team-api/admin/edit_loan.php`;
+        let fData = new FormData();
+        fData.append('name', name2);
+        fData.append('id', id);
+        fData.append('lastDate', loan_Date);
+        fData.append('team', localStorage.getItem('team'));
+        fData.append('mobile_no', localStorage.getItem('mobile_no'));
+        fData.append('admin_name', localStorage.getItem('user_name'));
+        axios.post(url, fData).then((result) => {
+          getData(); getTotalLoan(); getTotalLoanReturned(); getTotalIntrest();
+          setSpinner(0); setActionid(null);
+          if (result.status == 200) {
+            if (result.data == 'Aclear') { alert("The User Loan Is Already Cleared If you are in any Problem Please Contact to Technical Manager"); }
+            else if (result.data == 'Nclear') { alert("Th EMI is successfuly added And The User Loan is Now Clear"); }
+            else if (result.data == 'yes') { alert("The EMI is successfuly added.."); }
+            else { alert("something is gone wrong please immidiate contact to the technical manager"); alert(result.data); console.log(result.data); }
+          } else { alert(result.data); }
+        }).catch(error => alert(error, " Try Again...!"));
+      }
+    }
   };
 
   useEffect(() => {
     getData();
-    getTotalloanReqests();
+    getTotalLoanReturned();
+    getTotalLoan();
     getTotalNames();
+    getTotalIntrest();
   }, []);
 
-  const statusConfig = {
-    'Approved..': { cls: 'status-approved', label: 'Approved' },
-    'Pending..':  { cls: 'status-pending',  label: 'Pending'  },
-    'Reject..':   { cls: 'status-rejected', label: 'Rejected' },
-  };
+  const ActionId = async (id) => { setActionid(id); };
+
+  const cols = [
+    'Action','#','Loan ID','User','Loan Amt','Returned','Interest','Int. Returned',
+    'Type','EMI Amt','Duration','Count','Rate','Loan Date','Last EMI','Provider','Status'
+  ];
 
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
 
-        .lr-root {
+        .loan-root {
           min-height: 100vh;
           background: #0a0a0a;
           padding: 90px 20px 60px;
           box-sizing: border-box;
           font-family: 'Syne', sans-serif;
-          overflow-x: hidden;
         }
-        .lr-inner { max-width: 1200px; margin: 0 auto; }
+        .loan-inner { max-width: 1200px; margin: 0 auto; }
 
         /* spinner */
-        .lr-spinner-overlay {
+        .loan-spinner-overlay {
           position: fixed; inset: 0; z-index: 999;
           background: rgba(0,0,0,0.65);
           display: flex; align-items: center; justify-content: center;
         }
-        .lr-spinner {
+        .loan-spinner {
           width: 44px; height: 44px;
           border: 3px solid rgba(240,192,64,0.15);
           border-top-color: #f0c040;
           border-radius: 50%;
-          animation: lr-spin 0.75s linear infinite;
+          animation: loan-spin 0.75s linear infinite;
         }
-        @keyframes lr-spin { to { transform: rotate(360deg); } }
+        @keyframes loan-spin { to { transform: rotate(360deg); } }
 
-        /* header */
-        .lr-header {
-          padding-bottom: 24px;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-          margin-bottom: 28px;
-        }
-        .lr-header-label {
+        /* page header */
+        .loan-header { padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 28px; }
+        .loan-header-label {
           font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
           text-transform: uppercase; color: rgba(245,245,240,0.28);
           font-family: 'DM Mono', monospace; margin-bottom: 6px;
         }
-        .lr-header-title {
-          font-size: clamp(22px, 4vw, 30px); font-weight: 800;
+        .loan-header-title {
+          font-size: clamp(22px,4vw,30px); font-weight: 800;
           color: #f5f5f0; letter-spacing: -0.02em;
         }
-        .lr-header-title span { color: #f0c040; }
+        .loan-header-title span { color: #f0c040; }
 
-        /* stats strip */
-        .lr-stats {
+        /* summary cards row */
+        .loan-stats {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 12px; margin-bottom: 28px;
         }
-        .lr-stat-card {
-          background: #111;
-          border: 1px solid rgba(255,255,255,0.07);
+        .loan-stat-card {
+          background: #111; border: 1px solid rgba(255,255,255,0.07);
           border-radius: 12px; padding: 16px 20px;
         }
-        .lr-stat-label {
+        .loan-stat-label {
           font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
           text-transform: uppercase; color: rgba(245,245,240,0.28);
           font-family: 'DM Mono', monospace; margin-bottom: 6px;
         }
-        .lr-stat-value {
-          font-size: 22px; font-weight: 800;
+        .loan-stat-value {
+          font-size: 20px; font-weight: 800;
           font-family: 'DM Mono', monospace; letter-spacing: -0.01em;
         }
 
-        /* hint banner */
-        .lr-hint {
-          font-size: 11px; font-family: 'DM Mono', monospace;
-          color: rgba(245,245,240,0.25); letter-spacing: 0.06em;
-          margin-bottom: 16px; padding: 10px 14px;
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 8px; background: rgba(255,255,255,0.02);
+        /* forms row */
+        .loan-forms {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px; margin-bottom: 28px;
         }
+        @media (max-width: 720px) { .loan-forms { grid-template-columns: 1fr; } }
 
-        /* layout: form on top, table below — always stacked */
-        .lr-layout {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        /* form card */
-        .lr-form-card {
-          background: #111;
-          border: 1px solid rgba(255,255,255,0.07);
+        .loan-form-card {
+          background: #111; border: 1px solid rgba(255,255,255,0.07);
           border-radius: 16px; padding: 24px;
-          max-width: 480px;
         }
-        .lr-form-title {
-          font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-          text-transform: uppercase; color: rgba(245,245,240,0.28);
+        .loan-form-title {
+          font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+          text-transform: uppercase; color: rgba(245,245,240,0.3);
           font-family: 'DM Mono', monospace; margin-bottom: 20px;
         }
-
-        /* active selection pill */
-        .lr-active-pill {
-          background: rgba(240,192,64,0.08);
-          border: 1px solid rgba(240,192,64,0.2);
-          border-radius: 8px; padding: 9px 12px;
-          margin-bottom: 18px;
-          font-family: 'DM Mono', monospace; font-size: 11px;
-          color: rgba(245,245,240,0.45); line-height: 1.6;
-        }
-        .lr-active-pill strong { color: #f0c040; }
-
-        .lr-field { margin-bottom: 14px; }
-        .lr-label {
+        .loan-field { margin-bottom: 14px; }
+        .loan-label {
           display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.13em;
           text-transform: uppercase; color: rgba(245,245,240,0.32);
           font-family: 'DM Mono', monospace; margin-bottom: 7px;
         }
-        .lr-input, .lr-select {
+        .loan-input, .loan-select {
           width: 100%; background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.1); border-radius: 9px;
-          padding: 10px 13px; font-size: 13px; font-weight: 600;
+          padding: 10px 13px; font-size: 13.5px; font-weight: 600;
           color: #f5f5f0; font-family: 'Syne', sans-serif;
           outline: none; box-sizing: border-box;
           transition: border-color 0.2s;
         }
-        .lr-input:focus, .lr-select:focus { border-color: rgba(240,192,64,0.5); }
-        .lr-input::placeholder { color: rgba(245,245,240,0.2); }
-        .lr-select {
-          appearance: none; cursor: pointer;
+        .loan-input:focus, .loan-select:focus { border-color: rgba(240,192,64,0.5); }
+        .loan-input::placeholder { color: rgba(245,245,240,0.2); }
+        .loan-input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5); }
+        .loan-select { appearance: none; cursor: pointer;
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(245,245,240,0.3)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
           background-repeat: no-repeat; background-position: right 13px center;
         }
-        .lr-select option { background: #1a1a1a; color: #f5f5f0; }
+        .loan-select option { background: #1a1a1a; color: #f5f5f0; }
 
-        .lr-submit-btn {
+        .loan-submit-btn {
           width: 100%; display: flex; align-items: center; justify-content: center;
           gap: 8px; padding: 11px 20px; border-radius: 9px; border: none;
           background: #f0c040; color: #1a1400; font-size: 12px; font-weight: 800;
           font-family: 'Syne', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
           cursor: pointer; transition: background 0.2s, transform 0.15s; margin-top: 6px;
         }
-        .lr-submit-btn:hover { background: #e6b800; transform: translateY(-1px); }
+        .loan-submit-btn:hover { background: #e6b800; transform: translateY(-1px); }
+
+        /* requests link */
+        .loan-requests-link {
+          display: inline-flex; align-items: center; gap: 8px;
+          text-decoration: none; font-size: 13px; font-weight: 700;
+          font-family: 'Syne', sans-serif; letter-spacing: 0.06em; text-transform: uppercase;
+          padding: 10px 20px; border-radius: 9px;
+          background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.25);
+          color: #a78bfa; transition: background 0.2s, border-color 0.2s;
+          margin-bottom: 20px;
+        }
+        .loan-requests-link:hover { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.4); }
 
         /* section label */
-        .lr-section-label {
+        .loan-section-label {
           font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em;
           text-transform: uppercase; color: rgba(245,245,240,0.25);
           font-family: 'DM Mono', monospace; margin-bottom: 14px;
         }
 
         /* table */
-        .lr-table-wrap {
-          background: #111;
-          border: 1px solid rgba(255,255,255,0.07);
+        .loan-table-wrap {
+          background: #111; border: 1px solid rgba(255,255,255,0.07);
           border-radius: 14px; overflow: hidden; overflow-x: auto;
-          width: 100%; box-sizing: border-box;
         }
-        .lr-table {
+        .loan-table {
           width: 100%; border-collapse: collapse;
-          font-family: 'Syne', sans-serif; min-width: 860px;
+          min-width: 1200px; font-family: 'Syne', sans-serif;
         }
-        .lr-table thead tr {
-          background: #181818;
-          border-bottom: 1px solid rgba(255,255,255,0.07);
+        .loan-table thead tr {
+          background: #181818; border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-        .lr-table th {
+        .loan-table th {
           padding: 11px 13px; font-size: 9.5px; font-weight: 700;
           letter-spacing: 0.14em; text-transform: uppercase;
           color: rgba(245,245,240,0.28); font-family: 'DM Mono', monospace;
           text-align: left; white-space: nowrap;
         }
-        .lr-table th.center { text-align: center; }
-        .lr-table tbody tr {
+        .loan-table th.center { text-align: center; }
+
+        .loan-table tbody tr {
           border-bottom: 1px solid rgba(255,255,255,0.04);
-          transition: background 0.15s; cursor: pointer;
+          transition: background 0.15s;
         }
-        .lr-table tbody tr:last-child { border-bottom: none; }
-        .lr-table tbody tr:hover { background: rgba(255,255,255,0.025); }
-        .lr-table tbody tr.active-row {
-          background: rgba(240,192,64,0.07);
-          border-left: 2px solid #f0c040;
-        }
-        .lr-table td {
+        .loan-table tbody tr:last-child { border-bottom: none; }
+        .loan-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+        .loan-table tbody tr.active-row { background: rgba(240,192,64,0.08); border-left: 2px solid #f0c040; }
+
+        .loan-table td {
           padding: 11px 13px; font-size: 12.5px;
           color: rgba(245,245,240,0.65); vertical-align: middle; white-space: nowrap;
         }
-        .lr-table td.center { text-align: center; }
+        .loan-table td.center { text-align: center; }
 
-        .lr-sr { font-family: 'DM Mono', monospace; font-size: 10.5px; color: rgba(245,245,240,0.22); }
-        .lr-mono { font-family: 'DM Mono', monospace; font-size: 12px; }
-        .lr-user { font-weight: 700; color: #f5f5f0; }
+        .loan-sr { font-family: 'DM Mono', monospace; font-size: 10.5px; color: rgba(245,245,240,0.22); }
+        .loan-mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+        .loan-user { font-weight: 700; color: #f5f5f0; }
 
-        /* select row btn */
-        .lr-row-btn {
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1);
-          color: rgba(245,245,240,0.6); border-radius: 6px;
-          padding: 4px 12px; font-size: 10.5px; font-weight: 700;
-          font-family: 'Syne', sans-serif; letter-spacing: 0.06em;
-          text-transform: uppercase; cursor: pointer;
+        .loan-action-btn {
+          background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+          color: rgba(245,245,240,0.6); border-radius: 6px; padding: 4px 12px;
+          font-size: 10.5px; font-weight: 700; font-family: 'Syne', sans-serif;
+          letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
           transition: background 0.2s, border-color 0.2s, color 0.2s; white-space: nowrap;
         }
-        .lr-row-btn:hover { background: rgba(240,192,64,0.1); border-color: rgba(240,192,64,0.35); color: #f0c040; }
-        .lr-row-btn.selected { background: rgba(240,192,64,0.15); border-color: rgba(240,192,64,0.5); color: #f0c040; }
+        .loan-action-btn:hover { background: rgba(240,192,64,0.1); border-color: rgba(240,192,64,0.35); color: #f0c040; }
+        .loan-action-btn.selected { background: rgba(240,192,64,0.15); border-color: rgba(240,192,64,0.5); color: #f0c040; }
 
-        /* status badges */
         .status-badge {
           font-size: 10px; font-weight: 700; font-family: 'DM Mono', monospace;
           letter-spacing: 0.08em; text-transform: uppercase;
-          padding: 3px 10px; border-radius: 99px; display: inline-block;
+          padding: 3px 10px; border-radius: 99px;
         }
-        .status-approved { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.22); }
-        .status-pending  { background: rgba(251,191,36,0.12);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.22);  }
-        .status-rejected { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.22); }
+        .status-clear { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.22); }
+        .status-pending { background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.22); }
 
         /* tfoot */
-        .lr-table tfoot tr { background: #181818; border-top: 1px solid rgba(255,255,255,0.07); }
-        .lr-table tfoot td { padding: 12px 13px; }
-        .lr-foot-label {
+        .loan-table tfoot tr { background: #181818; border-top: 1px solid rgba(255,255,255,0.07); }
+        .loan-table tfoot td { padding: 12px 13px; }
+        .loan-foot-label {
           font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em;
           text-transform: uppercase; font-family: 'DM Mono', monospace;
           color: rgba(245,245,240,0.28);
         }
-        .lr-foot-val {
+        .loan-foot-val {
           font-size: 13px; font-weight: 800;
           font-family: 'DM Mono', monospace; color: #f0c040;
         }
-
-        /* empty */
-        .lr-empty {
-          text-align: center; padding: 48px 20px;
-          color: rgba(245,245,240,0.2);
-          font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em;
-        }
       `}</style>
 
-      {spinner ? <div className="lr-spinner-overlay"><div className="lr-spinner" /></div> : null}
+      {spinner ? <div className="loan-spinner-overlay"><div className="loan-spinner" /></div> : null}
 
-      <div className="lr-root">
-        <div className="lr-inner">
+      <div className="loan-root">
+        <div className="loan-inner">
 
-          {/* Header */}
-          <div className="lr-header">
-            <div className="lr-header-label">Finance</div>
-            <div className="lr-header-title">Loan <span>Requests</span></div>
+          {/* ── Page header ── */}
+          <div className="loan-header">
+            <div className="loan-header-label">Finance</div>
+            <div className="loan-header-title">Loan <span>Management</span></div>
           </div>
 
-          {/* Stats */}
-          <div className="lr-stats">
-            <div className="lr-stat-card">
-              <div className="lr-stat-label">Total Requests</div>
-              <div className="lr-stat-value" style={{ color: '#f5f5f0' }}>{data.length}</div>
-            </div>
-            <div className="lr-stat-card">
-              <div className="lr-stat-label">Approved</div>
-              <div className="lr-stat-value" style={{ color: '#34d399' }}>
-                {data.filter(d => d.status === 'Approved..').length}
+          {/* ── Stats strip ── */}
+          <div className="loan-stats">
+            <div className="loan-stat-card">
+              <div className="loan-stat-label">Total Dispatched</div>
+              <div className="loan-stat-value" style={{ color: '#f87171' }}>
+                ₹ {Number(loan_amt).toLocaleString('en-IN')}
               </div>
             </div>
-            <div className="lr-stat-card">
-              <div className="lr-stat-label">Pending</div>
-              <div className="lr-stat-value" style={{ color: '#fbbf24' }}>
-                {data.filter(d => d.status === 'Pending..').length}
+            <div className="loan-stat-card">
+              <div className="loan-stat-label">Total Returned</div>
+              <div className="loan-stat-value" style={{ color: '#34d399' }}>
+                ₹ {Number(loan_amt_returned).toLocaleString('en-IN')}
               </div>
             </div>
-            <div className="lr-stat-card">
-              <div className="lr-stat-label">Rejected</div>
-              <div className="lr-stat-value" style={{ color: '#f87171' }}>
-                {data.filter(d => d.status === 'Reject..').length}
-              </div>
-            </div>
-            <div className="lr-stat-card">
-              <div className="lr-stat-label">Total Amount</div>
-              <div className="lr-stat-value" style={{ color: '#f0c040' }}>
-                {loanReqests_amt}
+            <div className="loan-stat-card">
+              <div className="loan-stat-label">Total Interest</div>
+              <div className="loan-stat-value" style={{ color: '#fbbf24' }}>
+                ₹ {Number(total_intrest_amt).toLocaleString('en-IN')}
               </div>
             </div>
           </div>
 
-          {/* Hint */}
-          <div className="lr-hint">
-            💡 Click <strong>Select</strong> on any row to auto-fill the edit form
-          </div>
+          {/* ── Forms row ── */}
+          <div className="loan-forms">
 
-          {/* Layout: Form + Table */}
-          <div className="lr-layout">
-
-            {/* Edit Form */}
-            <div className="lr-form-card">
-              <div className="lr-form-title">Update Request Status</div>
-
-              {activeId && (
-                <div className="lr-active-pill">
-                  Editing request <strong>#{activeId}</strong>
-                </div>
-              )}
-
-              <div className="lr-field">
-                <label className="lr-label">User Name</label>
-                <select value={username} onChange={(e) => setUserName(e.target.value)} className="lr-select">
+            {/* Add Loan */}
+            <div className="loan-form-card">
+              <div className="loan-form-title">Add New Loan</div>
+              <div className="loan-field">
+                <label className="loan-label">User Name</label>
+                <select value={name} onChange={(e) => setName(e.target.value)} className="loan-select">
                   <option>User Name...</option>
-                  {names.map((name, i) => <option key={i}>{name.user_name}</option>)}
+                  {names.map((n, i) => <option key={i}>{n.user_name}</option>)}
                 </select>
               </div>
-
-              <div className="lr-field">
-                <label className="lr-label">Request ID</label>
-                <select value={requestId} onChange={(e) => setRequestId(e.target.value)} className="lr-select">
-                  <option>Select ID...</option>
-                  {data.map((item, i) => <option key={i}>{item.id}</option>)}
-                </select>
+              <div className="loan-field">
+                <label className="loan-label">Amount</label>
+                <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount" className="loan-input" />
               </div>
-
-              <div className="lr-field">
-                <label className="lr-label">Request Status</label>
-                <select value={status} onChange={(e) => setStatus(e.target.value)} className="lr-select">
-                  <option>Select Status...</option>
-                  <option value="Pending..">Pending</option>
-                  <option value="Approved..">Approved</option>
-                  <option value="Reject..">Rejected</option>
-                </select>
+              <div className="loan-field">
+                <label className="loan-label">Loan Date</label>
+                <input value={getDate} type="date" onChange={(e) => setGetDate(e.target.value)} className="loan-input" />
               </div>
-
-              <div className="lr-field">
-                <label className="lr-label">Reply</label>
-                <input
-                  value={reply}
-                  onChange={(e) => setReply(e.target.value)}
-                  placeholder="Enter reply message"
-                  className="lr-input"
-                />
+              <div className="loan-field">
+                <label className="loan-label">Duration</label>
+                <input value={duration} onChange={(e) => setDuration(e.target.value)} placeholder="Enter duration" className="loan-input" />
               </div>
-
-              <button onClick={handleEditLoanRequests} className="lr-submit-btn">
-                <FaPaperPlane size={12} /> Update Request
+              <button onClick={handleAddLoan} className="loan-submit-btn">
+                <FaPaperPlane size={12} /> Submit Loan
               </button>
             </div>
 
-            {/* Table */}
-            <div>
-              <div className="lr-section-label">All User Loan Requests</div>
-              <div className="lr-table-wrap">
-                <table className="lr-table">
-                  <thead>
-                    <tr>
-                      <th className="center">Select</th>
-                      <th className="center">#</th>
-                      <th>Req. ID</th>
-                      <th>User</th>
-                      <th>Amount</th>
-                      <th>Duration</th>
-                      <th>Need Date</th>
-                      <th>Req. Date</th>
-                      <th className="center">Status</th>
-                      <th>Reply</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.length === 0 ? (
-                      <tr>
-                        <td colSpan={10}><div className="lr-empty">No loan requests found</div></td>
-                      </tr>
-                    ) : (
-                      data.map((item, index) => {
-                        const sc = statusConfig[item.status] || { cls: 'status-pending', label: item.status };
-                        return (
-                          <tr key={index} className={activeId === item.id ? 'active-row' : ''}>
-                            <td className="center">
-                              <button
-                                className={`lr-row-btn ${activeId === item.id ? 'selected' : ''}`}
-                                onClick={() => handleSelectRow(item)}
-                              >
-                                {activeId === item.id ? '✓ Active' : 'Select'}
-                              </button>
-                            </td>
-                            <td className="center"><span className="lr-sr">{index + 1}</span></td>
-                            <td><span className="lr-mono">{item.id}</span></td>
-                            <td><span className="lr-user">{item.user_name}</span></td>
-                            <td><span className="lr-mono" style={{ color: '#f0c040' }}>₹ {Number(item.amount).toLocaleString('en-IN')}</span></td>
-                            <td><span className="lr-mono">{item.EMI_duration}</span></td>
-                            <td><span className="lr-mono" style={{ color: 'rgba(245,245,240,0.35)', fontSize: '11px' }}>{item.need_date}</span></td>
-                            <td><span className="lr-mono" style={{ color: 'rgba(245,245,240,0.35)', fontSize: '11px' }}>{item.request_date}</span></td>
-                            <td className="center">
-                              <span className={`status-badge ${sc.cls}`}>{sc.label}</span>
-                            </td>
-                            <td><span style={{ color: 'rgba(245,245,240,0.55)', fontSize: '12px' }}>{item.reply}</span></td>
-                          </tr>
-                        );
-                      })
-                    )}
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colSpan={3}><span className="lr-foot-label">Total Requests</span></td>
-                      <td colSpan={2}><span className="lr-foot-val">{data.length}</span></td>
-                      <td colSpan={5}><span className="lr-foot-label">Total Amount: <span className="lr-foot-val">{loanReqests_amt}</span></span></td>
-                    </tr>
-                  </tfoot>
-                </table>
+            {/* Add EMI */}
+            <div className="loan-form-card">
+              <div className="loan-form-title">Add Loan EMI</div>
+              <div className="loan-field">
+                <label className="loan-label">User Name</label>
+                <select value={name2} onChange={(e) => setName2(e.target.value)} className="loan-select">
+                  <option>User Name...</option>
+                  {names.map((n, i) => <option key={i}>{n.user_name}</option>)}
+                </select>
               </div>
+              <div className="loan-field">
+                <label className="loan-label">Loan ID</label>
+                <input value={id} onChange={(e) => setId(e.target.value)} placeholder="Enter Loan ID" className="loan-input" />
+              </div>
+              <div className="loan-field">
+                <label className="loan-label">Payment Date</label>
+                <input value={loan_Date} type="date" onChange={(e) => setLoanDate(e.target.value)} className="loan-input" />
+              </div>
+              {Actionids && (
+                <div style={{ fontSize: '11px', fontFamily: '"DM Mono", monospace', color: '#f0c040', marginBottom: '12px', padding: '8px 12px', background: 'rgba(240,192,64,0.08)', borderRadius: '7px', border: '1px solid rgba(240,192,64,0.2)' }}>
+                  Active Loan ID: <strong>{Actionids}</strong>
+                </div>
+              )}
+              <button onClick={handleEditLoan} className="loan-submit-btn">
+                <FaPaperPlane size={12} /> Submit EMI
+              </button>
             </div>
-
           </div>
+
+          {/* ── Loan Requests link ── */}
+          <Link to="/loanrequests" className="loan-requests-link">
+            ↗ View Loan Requests
+          </Link>
+
+          {/* ── Table ── */}
+          <div className="loan-section-label">All User Loans</div>
+          <div className="loan-table-wrap">
+            <table className="loan-table">
+              <thead>
+                <tr>
+                  <th className="center">Action</th>
+                  <th className="center">#</th>
+                  <th>Loan ID</th>
+                  <th>User</th>
+                  <th>Loan Amt</th>
+                  <th>Returned</th>
+                  <th>Interest</th>
+                  <th>Int. Returned</th>
+                  <th>Type</th>
+                  <th>EMI Amt</th>
+                  <th>Duration</th>
+                  <th>Count</th>
+                  <th>Rate</th>
+                  <th>Loan Date</th>
+                  <th>Last EMI</th>
+                  <th>Provider</th>
+                  <th className="center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr key={index} className={Actionids === item.id ? 'active-row' : ''}>
+                    <td className="center">
+                      <button
+                        className={`loan-action-btn ${Actionids === item.id ? 'selected' : ''}`}
+                        onClick={() => ActionId(item.id)}
+                      >
+                        {Actionids === item.id ? '✓ Active' : 'Select'}
+                      </button>
+                    </td>
+                    <td className="center"><span className="loan-sr">{index + 1}</span></td>
+                    <td><span className="loan-mono">{item.id}</span></td>
+                    <td><span className="loan-user">{item.user_name}</span></td>
+                    <td><span className="loan-mono">₹ {Number(item.loan_amt).toLocaleString('en-IN')}</span></td>
+                    <td><span className="loan-mono" style={{ color: '#34d399' }}>₹ {Number(item.loan_amt_returned).toLocaleString('en-IN')}</span></td>
+                    <td><span className="loan-mono" style={{ color: '#fbbf24' }}>₹ {Number(item.loan_amt_intrest).toLocaleString('en-IN')}</span></td>
+                    <td><span className="loan-mono">₹ {Number(item.loan_amt_intrest_returned).toLocaleString('en-IN')}</span></td>
+                    <td><span className="loan-mono">{item.loan_type}</span></td>
+                    <td><span className="loan-mono">₹ {Number(item.EMI_amt).toLocaleString('en-IN')}</span></td>
+                    <td><span className="loan-mono">{item.EMI_duration}</span></td>
+                    <td><span className="loan-mono">{item.EMI_count}</span></td>
+                    <td><span className="loan-mono">{item.EMI_rate}%</span></td>
+                    <td><span className="loan-mono" style={{ color: 'rgba(245,245,240,0.35)', fontSize: '11px' }}>{item.Loan_date}</span></td>
+                    <td><span className="loan-mono" style={{ color: 'rgba(245,245,240,0.35)', fontSize: '11px' }}>{item.last_paid_date}</span></td>
+                    <td><span style={{ color: 'rgba(245,245,240,0.55)' }}>{item.loan_provider}</span></td>
+                    <td className="center">
+                      <span className={`status-badge ${item.status === 'Clear' ? 'status-clear' : 'status-pending'}`}>
+                        {item.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan="4"><span className="loan-foot-label">Total Returned Loan</span></td>
+                  <td colSpan="2"><span className="loan-foot-val">₹ {Number(loan_amt_returned).toLocaleString('en-IN')}</span></td>
+                  <td colSpan="2"><span className="loan-foot-label">Dispatched</span></td>
+                  <td colSpan="2"><span className="loan-foot-val">₹ {Number(loan_amt).toLocaleString('en-IN')}</span></td>
+                  <td colSpan="3"><span className="loan-foot-label">Total Interest</span></td>
+                  <td colSpan="4"><span className="loan-foot-val">₹ {Number(total_intrest_amt).toLocaleString('en-IN')}</span></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
         </div>
       </div>
     </>
   );
 };
 
-export default LoanRequest;
+export default Loan;
