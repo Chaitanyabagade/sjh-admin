@@ -99,6 +99,7 @@ const LoanRequest = () => {
           padding: 90px 20px 60px;
           box-sizing: border-box;
           font-family: 'Syne', sans-serif;
+          overflow-x: hidden;
         }
         .lr-inner { max-width: 1200px; margin: 0 auto; }
 
@@ -164,14 +165,11 @@ const LoanRequest = () => {
           border-radius: 8px; background: rgba(255,255,255,0.02);
         }
 
-        /* layout: form + table side-by-side on large screens */
+        /* layout: form on top, table below — always stacked */
         .lr-layout {
-          display: grid;
-          grid-template-columns: 340px 1fr;
-          gap: 20px; align-items: start;
-        }
-        @media (max-width: 860px) {
-          .lr-layout { grid-template-columns: 1fr; }
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
         }
 
         /* form card */
@@ -179,7 +177,7 @@ const LoanRequest = () => {
           background: #111;
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 16px; padding: 24px;
-          position: sticky; top: 20px;
+          max-width: 480px;
         }
         .lr-form-title {
           font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
@@ -242,10 +240,11 @@ const LoanRequest = () => {
           background: #111;
           border: 1px solid rgba(255,255,255,0.07);
           border-radius: 14px; overflow: hidden; overflow-x: auto;
+          width: 100%; box-sizing: border-box;
         }
         .lr-table {
           width: 100%; border-collapse: collapse;
-          font-family: 'Syne', sans-serif; min-width: 700px;
+          font-family: 'Syne', sans-serif; min-width: 860px;
         }
         .lr-table thead tr {
           background: #181818;
